@@ -2,7 +2,7 @@
 
 require('dbManager.php');
 
-class bookRepository 
+class BookRepository 
 {
     private function __construct() 
     {
@@ -32,6 +32,29 @@ class bookRepository
         $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
         $stmt->execute([
             'ownerId' => $ownerId,
+        ]);
+
+        $datas = $stmt->fetchAll();
+
+        $books = array_map(fn($data) => new Book($data), $datas);
+
+        return $books;
+    }
+
+    /**
+     * @return array of Book
+     */
+    public function getBooksContainingInput(string $userInput) : array
+    {
+        $sql = 'SELECT * from book 
+                WHERE author LIKE %:userInput%
+                OR content LIKE %:userInput%
+                OR description LIKE %:userInput%
+                ';
+
+        $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
+        $stmt->execute([
+            'userInput' => $userInput,
         ]);
 
         $datas = $stmt->fetchAll();
@@ -84,4 +107,5 @@ class bookRepository
             'state_id' => $book->getStateId(),
         ]);
     }
+
 }
