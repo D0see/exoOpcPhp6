@@ -23,11 +23,11 @@ try {
             $profileController->showProfile();
             break;
         case 'viewPersonalLibrary':
-            $LibraryController = new LibraryController();
+            $LibraryController = new BookController();
             $LibraryController->showPersonalLibrary();
             break;
         case 'viewLibrary':
-            $LibraryController = new LibraryController();
+            $LibraryController = new BookController();
             $LibraryController->showLibrary();
             break;
         case 'viewBook':
