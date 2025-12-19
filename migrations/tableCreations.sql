@@ -18,9 +18,13 @@ CREATE TABLE book (
     `image` TEXT,
     `description` TEXT NOT NULL,
     `owner_id` INT NOT NULL,
+    `borrower_id` INT DEFAULT NULL,
     `state_id` INT NOT NULL,
-    CONSTRAINT book_member
+    CONSTRAINT book_member_owner
     FOREIGN KEY (owner_id)
+    references member(id),
+    CONSTRAINT book_member_borrower
+    FOREIGN KEY (borrower_id)
     references member(id),
     CONSTRAINT book_book_state 
     FOREIGN KEY (state_id)
@@ -31,7 +35,7 @@ CREATE TABLE book (
 CREATE TABLE message (
     `id` INT NOT NULL AUTO_INCREMENT,
     `content` VARCHAR(255) NOT NULL,
-    `created_at` DATE NOT NULL,
+    `created_at` DATETIME NOT NULL,
     `sender_id` INT NOT NULL,
     `receiver_id` INT NOT NULL,
     CONSTRAINT message_sender
@@ -42,3 +46,7 @@ CREATE TABLE message (
     REFERENCES `member`(`id`),
     PRIMARY KEY (`id`)
 );
+
+INSERT INTO book_state (title) VALUES
+('free'),
+('lent');   -- = already loaned out

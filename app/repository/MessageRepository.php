@@ -11,14 +11,19 @@ class MessageRepository
     /**
      * @return array of Message
      */
-    public function getMessagesBySenderAndReceiverId(int $senderId, int $receiverId) : array
+    public function getConversationByUserIdAndContactId(int $userId, int $contactId) : array
     {
-        $sql = 'select * from message where sender_id = :senderId and receiverId = :receiverId';
+        $sql = '
+        SELECT * FROM message as m
+        WHERE (sender_id = :userId AND receiver_id = :contactId)
+        OR (sender_id = :contactId AND receiver_id = :userId)
+        ORDER BY m.created_at ASC
+        ';
 
         $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
         $stmt->execute([
-            'sender_id' => $senderId,
-            'receiver_id' => $receiverId,
+            'userId' => $userId,
+            'contactId' => $contactId,
         ]);
 
         $datas = $stmt->fetchAll();
@@ -28,13 +33,13 @@ class MessageRepository
         return $messages;
     }
 
-    public function getMessagesByReceiverId(int $receiverId) : array
+    public function getMessagesByUserId(int $userId) : array
     {
-        $sql = 'select * from message where receiverId = :receiverId';
+        $sql = 'SELECT * FROM message WHERE receiver_id = :userId OR sender_id = :userId';
 
         $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
         $stmt->execute([
-            'receiver_id' => $receiverId,
+            'userId' => $userId,
         ]);
 
         $datas = $stmt->fetchAll();
@@ -56,7 +61,7 @@ class MessageRepository
         $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
         $stmt->execute([
             'content' => $message->getContent(),
-            'created_at' => $message->getCreatedAt(),
+            'created_at' => new DateTime(),
             'sender_id' => $message->getSenderId(),
             'receiver_id' => $message->getReceiverId(),
         ]);

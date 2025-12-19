@@ -44,17 +44,36 @@ class BookRepository
     /**
      * @return array of Book
      */
-    public function getBooksContainingInput(string $userInput) : array
+    public function getBooksByBorrowerId(int $borrowerId) : array
+    {
+        $sql = 'select * from book where borrower_id = :borrowerId';
+
+        $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
+        $stmt->execute([
+            'borrowerId' => $borrowerId,
+        ]);
+
+        $datas = $stmt->fetchAll();
+
+        $books = array_map(fn($data) => new Book($data), $datas);
+
+        return $books;
+    }
+
+    /**
+     * @return array of Book
+     */
+    public function getBooksContainingInput(string $input) : array
     {
         $sql = 'SELECT * from book 
-                WHERE author LIKE %:userInput%
-                OR content LIKE %:userInput%
-                OR description LIKE %:userInput%
+                WHERE author LIKE %:input%
+                OR content LIKE %:input%
+                OR description LIKE %:input%
                 ';
 
         $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
         $stmt->execute([
-            'userInput' => $userInput,
+            'input' => $input,
         ]);
 
         $datas = $stmt->fetchAll();
@@ -105,6 +124,49 @@ class BookRepository
             'description' => $book->getDescription(),
             'owner_id' => $book->getOwnerId(),
             'state_id' => $book->getStateId(),
+        ]);
+    }
+
+    public function setBookToLent($userId, $bookId) {
+        $sql ="
+            UPDATE book 
+            set borrowerId = :borrower_id 
+            set state_id = :state_id 
+            where id = :id
+        ";
+
+        $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
+        $stmt->execute([
+            'id' => $bookId,
+            'borrower_id' => $userId,
+            'state_id' => 2,
+        ]);
+    }
+
+    public function setBookToFree($bookId) {
+        $sql ="
+            UPDATE book 
+            set state_id = :state_id 
+            where id = :id
+        ";
+
+        $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
+        $stmt->execute([
+            'id' => $bookId,
+            'state_id' => 1,
+            //todo build enum for state id
+        ]);
+    }
+
+    public function deleteBook($bookId) {
+        $sql ="
+            Delete from book 
+            where id = :id
+        ";
+
+        $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
+        $stmt->execute([
+            'id' => $bookId,
         ]);
     }
 
