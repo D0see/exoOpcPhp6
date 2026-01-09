@@ -15,5 +15,16 @@
             echo '<br>';
             echo '<br>';
         }
+
+        echo 'Conversation';
+        echo '<br>';
+        foreach ($conversation as $message) {
+            echo $message->getContent();
+            echo '<br>';
+            echo $correspondant->getPseudo();
+            echo '<br>';
+            echo '<br>';
+            echo '<br>';
+        }
     ?>
 </div>

@@ -14,10 +14,10 @@ class MessageRepository
     public function getConversationByUserIdAndContactId(int $userId, int $contactId) : array
     {
         $sql = '
-        SELECT * FROM message as m
+        SELECT * FROM message
         WHERE (sender_id = :userId AND receiver_id = :contactId)
         OR (sender_id = :contactId AND receiver_id = :userId)
-        ORDER BY m.created_at ASC
+        ORDER BY created_at ASC
         ';
 
         $stmt = DBManager::getInstance()->getPDO()->prepare($sql);

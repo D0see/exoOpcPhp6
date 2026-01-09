@@ -58,9 +58,12 @@ class MessagerieService
     public function getConversation(int $userId, int $contactId): array {
         $messages = $this->messageRepository->getConversationByUserIdAndContactId($userId, $contactId);
         usort(
-            $messages, 
-            fn(Message $messageA, Message $messageB) => $messageA->getCreatedAt() < $messageB->getCreatedAt()
+            $messages,
+            fn (Message $messageA, Message $messageB) =>
+                (new \DateTime($messageA->getCreatedAt()))->getTimestamp()
+                - (new \DateTime($messageB->getCreatedAt()))->getTimestamp()
         );
+
         return $messages;
     }
 

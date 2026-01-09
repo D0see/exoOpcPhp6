@@ -16,13 +16,20 @@ class MessagerieController {
     {
         //todo change this
         $userId = 1;
+        $contactId = 2;
 
         $lastMessages = $this->messagerieService->getLastMessageOfEachDiscussionByUserId($userId);
+
+        $currentConversation = null;
+        if (isset($contactId)) {
+           $currentConversation  = $this->messagerieService->getConversation($userId, $contactId);
+        }
 
         // On affiche la page d'administration.
         $view = new View("messagerie");
         $view->render("messagerie", [
-            'lastMessages' => $lastMessages
+            'lastMessages' => $lastMessages,
+            'conversation' => $currentConversation
         ]);
     }
 }
