@@ -4,8 +4,20 @@ require('dbManager.php');
 
 class BookRepository 
 {
-    private function __construct() 
+    public function __construct() 
     {
+    }
+
+    public function getXLastBooks(int $x) {
+        $sql = 'select * from book ORDER BY created_at DESC LIMIT ' . $x;
+
+        $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
+
+        $datas = $stmt->fetchAll();
+
+        $books = array_map(fn($data) => new Book($data), $datas);
+
+        return $books;
     }
 
     public function getBookById(int $id) : Book 

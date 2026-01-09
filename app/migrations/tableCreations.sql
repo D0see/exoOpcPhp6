@@ -20,7 +20,8 @@ CREATE TABLE book (
     `owner_id` INT NOT NULL,
     `borrower_id` INT DEFAULT NULL,
     `state_id` INT NOT NULL,
-    CONSTRAINT book_member_owner
+    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT book_member
     FOREIGN KEY (owner_id)
     references member(id),
     CONSTRAINT book_member_borrower
