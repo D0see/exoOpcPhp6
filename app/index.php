@@ -2,6 +2,7 @@
 
 require_once 'config.php';
 require_once 'autoload.php';
+require('dbManager.php');
 
 $action = Utils::request('action', 'home');
 
@@ -12,20 +13,16 @@ try {
             $homeController->showHome();
             break;
         case 'register':
-            $homeController = new MemberController();
-            $homeController->showRegister();
+            $memberController = new MemberController();
+            $memberController->showRegister();
             break;
         case 'connect':
-            $homeController = new MemberController();
-            $homeController->showConnect();
+            $memberController = new MemberController();
+            $memberController->showConnect();
             break;
         case 'viewProfile':
-            $profileController = new MemberController();
-            $profileController->showProfile();
-            break;
-        case 'viewPersonalLibrary':
-            $bookController = new BookController();
-            $bookController->showPersonalLibrary();
+            $memberController = new MemberController();
+            $memberController->showProfile();
             break;
         case 'viewLibrary':
             $bookController = new BookController();

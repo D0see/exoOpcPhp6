@@ -1,7 +1,5 @@
 <?php
 
-require('dbManager.php');
-
 class BookRepository 
 {
     public function __construct() 

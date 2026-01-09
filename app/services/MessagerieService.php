@@ -67,4 +67,8 @@ class MessagerieService
         return $messages;
     }
 
+    public function sendMessage(Message $message) {
+        $this->messageRepository->sendMessage($message);
+    }
+
 }

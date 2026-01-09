@@ -1,7 +1,5 @@
 <?php
 
-require('dbManager.php');
-
 class MessageRepository 
 {
     public function __construct() 
@@ -52,16 +50,15 @@ class MessageRepository
     public function createMessage(Message $message): void {
         $sql ="
             INSERT INTO message (
-                content, created_at, sender_id, receiver_id
+                content, sender_id, receiver_id
             ) VALUES (
-                :content, :created_at, :sender_id, :receiver_id         
+                :content, :sender_id, :receiver_id         
             )
         ";
 
         $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
         $stmt->execute([
             'content' => $message->getContent(),
-            'created_at' => new DateTime(),
             'sender_id' => $message->getSenderId(),
             'receiver_id' => $message->getReceiverId(),
         ]);

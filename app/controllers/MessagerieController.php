@@ -32,4 +32,16 @@ class MessagerieController {
             'conversation' => $currentConversation
         ]);
     }
+
+    public function sendMessage(string $userId, string $contactId, string $message) {
+
+        $message = new Message();
+        
+        $message->setContent($message)
+        ->setSenderId($userId)
+        ->setReceiverId($contactId);
+
+        $this->messagerieService->sendMessage($message);
+
+    }
 }
