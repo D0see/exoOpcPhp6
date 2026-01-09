@@ -4,7 +4,7 @@ class LibraryService
 {
     private BookRepository $bookRepository;
 
-    private function __construct() 
+    public function __construct() 
     {
         $this->bookRepository = new BookRepository();
     }

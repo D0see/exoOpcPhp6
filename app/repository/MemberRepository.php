@@ -22,7 +22,7 @@ class MemberRepository
 
     public function getMemberById(int $id): ?Member
     {
-        $sql = 'SELECT * FROM member WHERE id = :idS';
+        $sql = 'SELECT * FROM member WHERE id = :id';
 
         $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
         $stmt->execute(['id' => $id]);

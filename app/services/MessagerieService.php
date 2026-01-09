@@ -3,10 +3,12 @@
 class MessagerieService
 {
     private MessageRepository $messageRepository;
+    private MemberRepository $memberRepository;
 
-    private function __construct() 
+    public function __construct() 
     {
         $this->messageRepository = new MessageRepository();
+        $this->memberRepository = new MemberRepository();
     }
 
     public function createMessage(Message $message): void {
@@ -16,21 +18,31 @@ class MessagerieService
     /**
      * return a the last message of each of the user conversation
      * @param int userId
-     * @return Message[] 
+     * @return array
      */
     public function getLastMessageOfEachDiscussionByUserId(int $userId): array {
         $messages = $this->messageRepository->getMessagesByUserId($userId);
 
-        $encounteredReceivers = [];
+        usort($messages, function (Message $a, Message $b) {
+            return (new \DateTime($b->getCreatedAt()))->getTimestamp() - (new \DateTime($a->getCreatedAt()))->getTimestamp();
+        });
+
+        $encounteredCorrespondant = [];
         $result = [];
 
         foreach ($messages as $message) {
-            $currConversationPair = [$message->getSenderId(), $message->getReceiverId()];
-            usort($currConversationPair, fn($a, $b) => $a < $b);
-            $currConversationPair = implode('-', $currConversationPair);
-            if (!isset($encounteredReceivers[$currConversationPair])) {
-                $result[] = $message;
-                $encounteredReceivers[$currConversationPair] = true;
+            $correspondantId = $message->getReceiverId() === $userId ?
+            $message->getSenderId() : 
+            $message->getReceiverId();
+
+            $correspondant = $this->memberRepository->getMemberById($correspondantId);
+
+            if (!isset($encounteredCorrespondant[$correspondantId])) {
+                $result[] = [
+                    'message' => $message,
+                    'correspondant' => $correspondant
+                ];
+                $encounteredCorrespondant[$correspondantId] = true;
             }
         }
 

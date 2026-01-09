@@ -12,6 +12,7 @@ class BookRepository
         $sql = 'select * from book ORDER BY created_at DESC LIMIT ' . $x;
 
         $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
+        $stmt->execute();
 
         $datas = $stmt->fetchAll();
 
@@ -159,6 +160,7 @@ class BookRepository
         $sql ="
             UPDATE book 
             set state_id = :state_id 
+            set borrower_id = NULL
             where id = :id
         ";
 

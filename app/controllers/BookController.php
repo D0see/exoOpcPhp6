@@ -3,19 +3,22 @@
 class BookController {
 
     private BookRepository $bookRepository;
+    private LibraryService $libraryService;
 
     public function __construct() 
     {
         $this->bookRepository = new BookRepository();
+        $this->libraryService = new LibraryService();
     }
 
     public function showPersonalLibrary() : void
     {
-        $books = $this->bookRepository->getXLastBooks(4);
+        //todo get the owner id here
+        $ownerId = 1;
+        $books = $this->libraryService->getUserBookCollection($ownerId);
 
-        // On affiche la page d'administration.
-        $view = new View("Home");
-        $view->render("home", [
+        $view = new View("PersonalLibrary");
+        $view->render("personalLibrary", [
             'books' => $books
         ]);
     }
@@ -24,7 +27,6 @@ class BookController {
     {
         $books = $this->bookRepository->getXLastBooks(4);
 
-        // On affiche la page d'administration.
         $view = new View("Home");
         $view->render("home", [
             'books' => $books
@@ -33,35 +35,38 @@ class BookController {
 
     public function showBook() : void
     {
-        $books = $this->bookRepository->getXLastBooks(4);
+        //replace with argument book id
+        $bookId = 1;
+        $book = $this->bookRepository->getBookById($bookId);
 
         // On affiche la page d'administration.
         $view = new View("Home");
-        $view->render("home", [
-            'books' => $books
+        $view->render("bookDetails", [
+            'book' => $book
         ]);
     }
 
-    public function addBook() : void
+    public function createBook() : void
     {
-        $books = $this->bookRepository->getXLastBooks(4);
 
-        // On affiche la page d'administration.
-        $view = new View("Home");
-        $view->render("home", [
-            'books' => $books
-        ]);
+        $view = new View("BookCreation");
+        $view->render("bookCreation", []);
     }
 
     public function borrowBook() : void
     {
-        $books = $this->bookRepository->getXLastBooks(4);
+        $bookId = 1;
+        $userId = 1;
 
-        // On affiche la page d'administration.
-        $view = new View("Home");
-        $view->render("home", [
-            'books' => $books
-        ]);
+        $books = $this->libraryService->setBookToLent($bookId, $userId);
+    }
+
+    public function returnBook() : void
+    {
+        $bookId = 1;
+        $userId = 1;
+
+        $books = $this->libraryService->setBookToLent($bookId, $userId);
     }
 
 }

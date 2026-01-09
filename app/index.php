@@ -35,27 +35,28 @@ try {
             $bookController = new BookController();
             $bookController->showBook();
             break;
-        case 'addBook':
+        case 'createBook':
             $bookController = new BookController();
-            $bookController->addBook();
+            $bookController->createBook();
             break;
         case 'borrowBook':
             $bookController = new BookController();
-            $bookController->updateBookState();
+            $bookController->borrowBook();
             break;
-        case 'viewPersonalMessages':
-            $messagerieController = new MessagerieController();
-            $messagerieController->showTexts();
+        case 'returnBook':
+            $bookController = new BookController();
+            $bookController->returnBook();
             break;
-        case 'viewConversation':
+        case 'viewMessagerie':
             $messagerieController = new MessagerieController();
-            $messagerieController->showConversation();
+            $messagerieController->showMessagerie();
             break;
         case 'sendMessage':
             $messagerieController = new MessagerieController();
             $messagerieController->sendMessage();
             break;
         default:
+            $homeController = new HomeController();
             $homeController->showHome();
     }
 } catch (Exception $e) {

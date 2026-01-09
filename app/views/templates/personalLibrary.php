@@ -1,7 +1,6 @@
 <div class="articleList">
     <?php 
-        echo 'home';
-        echo '<br>';
+        echo 'personalLibrary';
         foreach ($books as $book) {
             echo $book->getTitle();
         }

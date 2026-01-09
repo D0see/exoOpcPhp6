@@ -3,7 +3,7 @@
 class Message extends AbstractEntity
 {
     private string $content;
-    private DateTime $createdAt;
+    private string $createdAt;
     private int    $senderId;
     private int    $receiverId;
 
@@ -12,7 +12,7 @@ class Message extends AbstractEntity
         return $this->content;
     }
 
-    public function getCreatedAt(): DateTime
+    public function getCreatedAt(): string
     {
         return $this->createdAt;
     }
@@ -33,7 +33,7 @@ class Message extends AbstractEntity
         return $this;
     }
 
-    public function setCreatedAt(DateTime $createdAt): self
+    public function setCreatedAt(string $createdAt): self
     {
         $this->createdAt = $createdAt;
         return $this;

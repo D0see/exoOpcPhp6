@@ -3,21 +3,26 @@
  * Contrôleur de la partie admin.
  */
  
-class HomeController {
+class MessagerieController {
 
-    public function showAdmin() : void
+    private MessagerieService $messagerieService;
+
+    public function __construct() 
     {
-        // On vérifie que l'utilisateur est connecté.
-        $this->checkIfUserIsConnected();
+        $this->messagerieService = new MessagerieService();
+    }
 
-        // On récupère les articles.
-        $articleManager = new ArticleManager();
-        $articles = $articleManager->getAllArticles();
+    public function showMessagerie() : void
+    {
+        //todo change this
+        $userId = 1;
+
+        $lastMessages = $this->messagerieService->getLastMessageOfEachDiscussionByUserId($userId);
 
         // On affiche la page d'administration.
-        $view = new View("Administration");
-        $view->render("admin", [
-            'articles' => $articles
+        $view = new View("messagerie");
+        $view->render("messagerie", [
+            'lastMessages' => $lastMessages
         ]);
     }
 }

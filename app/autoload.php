@@ -13,8 +13,8 @@ spl_autoload_register(function($className) {
     }
 
     // On va voir dans le dossier Model si la classe existe.
-    if (file_exists('models/' . $className . '.php')) {
-        require_once 'models/' . $className . '.php';
+    if (file_exists('entities/' . $className . '.php')) {
+        require_once 'entities/' . $className . '.php';
     }
 
     // On va voir dans le dossier Controller si la classe existe.
