@@ -14,9 +14,8 @@ class MessagerieController {
 
     public function showMessagerie() : void
     {
-        //todo change this
-        $userId = 1;
-        $contactId = 2;
+        $userId = $_SESSION['idUser'];
+        $contactId = Utils::request("idContact");;
 
         $lastMessages = $this->messagerieService->getLastMessageOfEachDiscussionByUserId($userId);
 
@@ -33,11 +32,16 @@ class MessagerieController {
         ]);
     }
 
-    public function sendMessage(string $userId, string $contactId, string $message) {
+    public function sendMessage() {
+
+        $userId = $_SESSION['idUser'];
+        $contactId = Utils::request("idContact");
+        $content = Utils::request("content");
 
         $message = new Message();
         
-        $message->setContent($message)
+        $message
+        ->setContent($content)
         ->setSenderId($userId)
         ->setReceiverId($contactId);
 

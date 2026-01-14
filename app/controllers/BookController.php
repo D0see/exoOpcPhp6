@@ -35,8 +35,8 @@ class BookController {
 
     public function showBook() : void
     {
-        //replace with argument book id
-        $bookId = 1;
+        $bookId = Utils::request("id", -1);
+
         $book = $this->bookRepository->getBookById($bookId);
 
         // On affiche la page d'administration.
@@ -55,18 +55,18 @@ class BookController {
 
     public function borrowBook() : void
     {
-        $bookId = 1;
-        $userId = 1;
+        $bookId = Utils::request("id", -1);
+        $userId = $_SESSION['idUser'];
 
         $books = $this->libraryService->setBookToLent($bookId, $userId);
     }
 
     public function returnBook() : void
     {
-        $bookId = 1;
-        $userId = 1;
+        $bookId = Utils::request("id", -1);
+        $userId = $_SESSION['idUser'];
 
-        $books = $this->libraryService->setBookToLent($bookId, $userId);
+        $books = $this->libraryService->returnBook($bookId, $userId);
     }
 
 }

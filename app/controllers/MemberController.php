@@ -14,7 +14,7 @@
         public function showProfile() : void
         {
             //todo change this to be
-            $memberId = 1;
+            $memberId = $_SESSION['idUser'];
             $member = $this->memberRepository->getMemberById($memberId);
 
             $books = $this->bookRepository->getBooksByOwnerId($memberId);
@@ -25,5 +25,35 @@
                 'member' => $member,
                 'books' => $books
             ]);
+        }
+
+        public function connectUser() {
+            // On récupère les données du formulaire.
+            $pseudo = Utils::request("pseudo");
+            $password = Utils::request("password");
+
+            // On vérifie que les données sont valides.
+            if (empty($login) || empty($password)) {
+                throw new Exception("Tous les champs sont obligatoires.");
+            }
+
+            // On vérifie que l'utilisateur existe.
+            $memberService = new MemberService;
+            $user = $memberService->getMemberByPseudo($login);
+            if (!$user) {
+                throw new Exception("L'utilisateur demandé n'existe pas.");
+            }
+
+            // On vérifie que le mot de passe est correct.
+            if ($password !== $user->getPassword) {
+                throw new Exception("Le mot de passe est incorrect");
+            }
+
+            // On connecte l'utilisateur.
+            $_SESSION['user'] = $user;
+            $_SESSION['idUser'] = $user->getId();
+
+            // On redirige vers la page d'administration.
+            Utils::redirect("home");
         }
     }

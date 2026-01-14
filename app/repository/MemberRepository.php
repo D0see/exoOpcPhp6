@@ -30,4 +30,15 @@ class MemberRepository
         $row = $stmt->fetch();
         return new Member($row);
     }
+
+    public function getMemberByPseudo(string $pseudo): ?Member
+    {
+        $sql = 'SELECT * FROM member WHERE pseudo = :pseudo';
+
+        $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
+        $stmt->execute(['pseudo' => $pseudo]);
+
+        $row = $stmt->fetch();
+        return new Member($row);
+    }
 }
