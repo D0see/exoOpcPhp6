@@ -24,7 +24,7 @@
             <a href="index.php?action=home">Accueil</a>
             <a href="index.php?action=viewLibrary">Nos livres à l'échange</a>
             <a href="index.php?action=viewPersonalMessages">Messagerie</a>
-            <a href="index.php?action=apropos">Mon compte</a>
+            <a href="index.php?action=myProfile">Mon compte</a>
             <?php 
                 // Si on est connecté, on affiche le bouton de déconnexion, sinon, on affiche le bouton de connexion : 
                 if (isset($_SESSION['user'])) {

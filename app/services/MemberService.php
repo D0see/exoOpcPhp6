@@ -9,7 +9,7 @@ class MemberService
         $this->memberRepository = new MemberRepository();
     }
 
-    public function getMemberByPseudo($pseudo) {
-        $this->memberRepository->getMemberByPseudo($pseudo);
+    public function getMemberByMail($mail) {
+        $this->memberRepository->getMemberByMail($mail);
     }
 }

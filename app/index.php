@@ -18,7 +18,11 @@ try {
             break;
         case 'connect':
             $memberController = new MemberController();
-            $memberController->showConnect();
+            $memberController->connect();
+            break;
+        case 'viewMyProfile':
+            $memberController = new MemberController();
+            $memberController->showMyProfile();
             break;
         case 'viewProfile':
             $memberController = new MemberController();

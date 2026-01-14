@@ -31,12 +31,12 @@ class MemberRepository
         return new Member($row);
     }
 
-    public function getMemberByPseudo(string $pseudo): ?Member
+    public function getMemberByMail(string $mail): ?Member
     {
-        $sql = 'SELECT * FROM member WHERE pseudo = :pseudo';
+        $sql = 'SELECT * FROM member WHERE mail = :mail';
 
         $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
-        $stmt->execute(['pseudo' => $pseudo]);
+        $stmt->execute(['mail' => $mail]);
 
         $row = $stmt->fetch();
         return new Member($row);
