@@ -138,11 +138,11 @@ class BookRepository
         ]);
     }
 
-    public function setBookToLent($userId, $bookId) {
+    public function setBookToLent($userId, int $bookId, string $borrowedAt) {
         $sql ="
             UPDATE book 
-            set borrowerId = :borrower_id 
-            set state_id = :state_id 
+            set borrower_id = :borrower_id,
+                borrowed_at = :borrowed_at
             where id = :id
         ";
 
@@ -150,23 +150,21 @@ class BookRepository
         $stmt->execute([
             'id' => $bookId,
             'borrower_id' => $userId,
-            'state_id' => 2,
+            'borrowed_at' => $borrowedAt,
         ]);
     }
 
-    public function setBookToFree($bookId) {
+    public function setBookToFree(int $bookId) {
         $sql ="
             UPDATE book 
-            set state_id = :state_id 
-            set borrower_id = NULL
+            set borrower_id = NULL,
+                borrowed_at = NULL
             where id = :id
         ";
 
         $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
         $stmt->execute([
-            'id' => $bookId,
-            'state_id' => 1,
-            //todo build enum for state id
+            'id' => $bookId
         ]);
     }
 

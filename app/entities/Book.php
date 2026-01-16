@@ -11,6 +11,7 @@ class Book extends AbstractEntity
     private ?int    $borrowerId = null;
     private int     $stateId;
     private string $createdAt;
+    private ?string $borrowedAt = null;
 
     public function getAuthor(): string
     {
@@ -37,7 +38,7 @@ class Book extends AbstractEntity
         return $this->ownerId;
     }
 
-    public function getBorrowerId(): int
+    public function getBorrowerId(): ?int
     {
         return $this->borrowerId;
     }
@@ -50,6 +51,11 @@ class Book extends AbstractEntity
     public function getCreatedAt(): string
     {
         return $this->createdAt;
+    }
+
+    public function getBorrowedAt(): ?string
+    {
+        return $this->borrowedAt;
     }
 
     public function setAuthor(string $author): self
@@ -97,6 +103,12 @@ class Book extends AbstractEntity
     public function setCreatedAt(string $createdAt): self
     {
         $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    public function setBorrowedAt(string | null $borrowedAt): self
+    {
+        $this->borrowedAt = $borrowedAt;
         return $this;
     }
 }

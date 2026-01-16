@@ -54,7 +54,7 @@
                 throw new Exception("L'utilisateur demandé n'existe pas.");
             }
 
-            if ($password !== $user->getPassword) {
+            if ($password !== $user->getPassword()) {
                 throw new Exception("Le mot de passe est incorrect");
             }
 
@@ -62,5 +62,19 @@
             $_SESSION['idUser'] = $user->getId();
 
             Utils::redirect("home");
+        }
+
+        public function disconnect() {
+
+            $_SESSION['user'] = null;
+            $_SESSION['idUser'] = null;
+
+            Utils::redirect("home");
+        }
+
+        public function showConnect() {
+
+            $view = new View("Connexion");
+            $view->render("connexion");
         }
     }

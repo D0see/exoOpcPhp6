@@ -20,6 +20,7 @@ CREATE TABLE book (
     `description` TEXT NOT NULL,
     `owner_id` INT NOT NULL,
     `borrower_id` INT DEFAULT NULL,
+    `borrowed_at` DATETIME DEFAULT NULL,
     `state_id` INT NOT NULL,
     `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT book_member
@@ -48,7 +49,3 @@ CREATE TABLE message (
     REFERENCES `member`(`id`),
     PRIMARY KEY (`id`)
 );
-
-INSERT INTO book_state (title) VALUES
-('free'),
-('lent');   -- = already loaned out

@@ -22,7 +22,7 @@ class MessagerieController {
         $currentConversation = null;
         if (isset($contactId)) {
            $currentConversation  = $this->messagerieService->getConversation($userId, $contactId);
-        }
+        } 
 
         // On affiche la page d'administration.
         $view = new View("messagerie");
@@ -36,16 +36,20 @@ class MessagerieController {
 
         $userId = $_SESSION['idUser'];
         $contactId = Utils::request("idContact");
-        $content = Utils::request("content");
+        $content = Utils::request("message");
 
         $message = new Message();
         
         $message
         ->setContent($content)
         ->setSenderId($userId)
-        ->setReceiverId($contactId);
+        ->setReceiverId($contactId)
+        ->setCreatedAt((new DateTime('now'))->format('Y-m-d H:i:s'));
 
-        $this->messagerieService->sendMessage($message);
+        $this->messagerieService->createMessage($message); 
 
+        Utils::redirect("viewMessagerie", [
+            'idContact' => $contactId
+        ]);
     }
 }

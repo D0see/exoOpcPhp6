@@ -10,6 +10,6 @@ class MemberService
     }
 
     public function getMemberByMail($mail) {
-        $this->memberRepository->getMemberByMail($mail);
+        return $this->memberRepository->getMemberByMail($mail);
     }
 }

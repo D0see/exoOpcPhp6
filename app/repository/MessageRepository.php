@@ -50,9 +50,9 @@ class MessageRepository
     public function createMessage(Message $message): void {
         $sql ="
             INSERT INTO message (
-                content, sender_id, receiver_id
+                content, sender_id, receiver_id, created_at
             ) VALUES (
-                :content, :sender_id, :receiver_id         
+                :content, :sender_id, :receiver_id, :created_at       
             )
         ";
 
@@ -61,6 +61,7 @@ class MessageRepository
             'content' => $message->getContent(),
             'sender_id' => $message->getSenderId(),
             'receiver_id' => $message->getReceiverId(),
+            'created_at' => $message->getCreatedAt()
         ]);
     }
 

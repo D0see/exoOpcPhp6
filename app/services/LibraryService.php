@@ -47,8 +47,8 @@ class LibraryService
         return $this->bookRepository->getBookById($bookId);
     }
 
-    public function borrowBook($userId, $bookId) {
-        return $this->bookRepository->setBookToLent($bookId, $userId);
+    public function borrowBook($userId, $bookId, $borrowedAt) {
+        return $this->bookRepository->setBookToLent($bookId, $userId, $borrowedAt);
     }
 
     public function returnBook($bookId) {

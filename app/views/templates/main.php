@@ -23,16 +23,15 @@
             <p>logo</p>
             <a href="index.php?action=home">Accueil</a>
             <a href="index.php?action=viewLibrary">Nos livres à l'échange</a>
-            <a href="index.php?action=viewPersonalMessages">Messagerie</a>
-            <a href="index.php?action=myProfile">Mon compte</a>
             <?php 
-                // Si on est connecté, on affiche le bouton de déconnexion, sinon, on affiche le bouton de connexion : 
                 if (isset($_SESSION['user'])) {
-                    echo '<a href="index.php?action=disconnectUser">Déconnexion</a>';
+                    echo '<a href="index.php?action=viewMessagerie">Messagerie</a>';
+                    echo '<a href="index.php?action=viewMyProfile">Mon compte</a>';
+                    echo '<a href="index.php?action=disconnect">Déconnexion</a>';
                 } else {
-                    echo '<a href="index.php?action=connect">Connexion</a>';
+                    echo '<a href="index.php?action=showConnect">Connexion</a>';
                 }
-                ?>
+            ?>
         </nav>
     </header>
 

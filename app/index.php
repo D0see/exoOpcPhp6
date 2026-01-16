@@ -4,6 +4,8 @@ require_once 'config.php';
 require_once 'autoload.php';
 require('dbManager.php');
 
+session_start();
+
 $action = Utils::request('action', 'home');
 
 try {
@@ -19,6 +21,14 @@ try {
         case 'connect':
             $memberController = new MemberController();
             $memberController->connect();
+            break;
+        case 'disconnect':
+            $memberController = new MemberController();
+            $memberController->disconnect();
+            break;
+        case 'showConnect':
+            $memberController = new MemberController();
+            $memberController->showConnect();
             break;
         case 'viewMyProfile':
             $memberController = new MemberController();
