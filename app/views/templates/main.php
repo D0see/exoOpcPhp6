@@ -28,6 +28,7 @@
                     echo '<a href="index.php?action=viewMessagerie">Messagerie</a>';
                     echo '<a href="index.php?action=viewMyProfile">Mon compte</a>';
                     echo '<a href="index.php?action=disconnect">Déconnexion</a>';
+                    echo '<a href="index.php?action=viewBookCreationForm">Ajouter un livre</a>';
                 } else {
                     echo '<a href="index.php?action=showConnect">Connexion</a>';
                 }

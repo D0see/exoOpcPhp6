@@ -26,8 +26,13 @@ class MemberRepository
 
         $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
         $stmt->execute(['id' => $id]);
-
+        
         $row = $stmt->fetch();
+
+        if ($row === false) {
+            return null;
+        }
+
         return new Member($row);
     }
 
@@ -39,6 +44,11 @@ class MemberRepository
         $stmt->execute(['mail' => $mail]);
 
         $row = $stmt->fetch();
+
+        if ($row === false) {
+            return null;
+        }
+
         return new Member($row);
     }
 }

@@ -4,11 +4,13 @@ class BookController {
 
     private BookRepository $bookRepository;
     private LibraryService $libraryService;
+    private ImageUploader $imageUploader;
 
     public function __construct() 
     {
         $this->bookRepository = new BookRepository();
         $this->libraryService = new LibraryService();
+        $this->imageUploader = new ImageUploader();
     }
 
     public function showPersonalLibrary() : void
@@ -25,10 +27,10 @@ class BookController {
 
     public function showLibrary() : void
     {
-        $books = $this->bookRepository->getXLastBooks(4);
+        $books = $this->bookRepository->getXLastBooks(24);
 
-        $view = new View("Home");
-        $view->render("home", [
+        $view = new View("Library");
+        $view->render("library", [
             'books' => $books
         ]);
     }
@@ -45,11 +47,47 @@ class BookController {
         ]);
     }
 
-    public function createBook() : void
+    public function showBookCreationForm() : void
     {
 
         $view = new View("BookCreation");
         $view->render("bookCreation", []);
+    }
+
+    public function createBook() : void
+    {
+        $title = Utils::request("title", null);
+        $author = Utils::request("author", null);
+        $image = Utils::request("image", null);
+        $description = Utils::request("description", null);
+
+        if (!isset($title) || !isset($author) || !isset($description)) {
+            $view = new View("BookCreation");
+            $view->render("bookCreation", ['errorMessage' => 'champs manquants']);
+        }
+
+        $book = new Book();
+        $book
+        ->setTitle($title)
+        ->setAuthor($author)
+        ->setDescription($description)
+        ->setOwnerId($_SESSION['idUser'])
+        ->setStateId(1);
+
+        $imagePath = null;
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            $imagePath = $this->imageUploader->uploadImage($_FILES['image'], 'images');
+        }
+
+        if (isset($imagePath)) {
+            $book->setImage($imagePath);
+        }
+        
+        $book = $this->bookRepository->createBook($book);
+        $view = new View('Book Details');
+        $view->render("bookDetails", [
+            'book' => $book
+        ]);
     }
 
     public function borrowBook() : void

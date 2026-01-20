@@ -64,7 +64,16 @@ class MessagerieService
                 - (new \DateTime($messageB->getCreatedAt()))->getTimestamp()
         );
 
-        return $messages;
+        $result = [];
+
+        foreach($messages as $message) {
+            array_push($result, [
+                'message' => $message,
+                'sender' => $this->memberRepository->getMemberById($message->getSenderId())
+            ]);
+        }
+
+        return $result;
     }
 
 }

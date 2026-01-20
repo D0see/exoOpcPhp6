@@ -2,6 +2,9 @@
     <?php 
         echo $book->getTitle();
         echo $book->getCreatedAt();
+        if ($book->getImage()) {
+            echo "<img src=" . htmlspecialchars($book->getImage()).  ' "alt="' . htmlspecialchars($book->getTitle()) . '">"';
+        }
 
         if ($book->getBorrowerId()) {
             echo '<p>borrowed</p>';

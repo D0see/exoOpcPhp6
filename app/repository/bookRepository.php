@@ -118,7 +118,7 @@ class BookRepository
         ]);
     }
 
-    public function createBook(Book $book): void {
+    public function createBook(Book $book): Book {
         $sql ="
             INSERT INTO book (
                 author, title, image, description, owner_id, state_id
@@ -136,6 +136,10 @@ class BookRepository
             'owner_id' => $book->getOwnerId(),
             'state_id' => $book->getStateId(),
         ]);
+
+        $bookId = DBManager::getInstance()->getPDO()->lastInsertId();
+        
+        return $this->getBookById($bookId);
     }
 
     public function setBookToLent($userId, int $bookId, string $borrowedAt) {
