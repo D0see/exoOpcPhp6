@@ -5,7 +5,7 @@
     >
     <div class="book-description">
         <h3><?= htmlspecialchars($book->getTitle()) ?></h3>
-        <h4><?= htmlspecialchars($book->getDescription()) ?></h4>
+        <h4><?= htmlspecialchars($book->getAuthor()) ?></h4>
         <h5><?= htmlspecialchars($book->getOwner()) ?></h5>
     </div>
 </a>

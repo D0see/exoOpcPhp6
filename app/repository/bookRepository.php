@@ -8,7 +8,7 @@ class BookRepository
 
     public function getXLastBooks(int $x) {
         $sql = '
-        select *, member.pseudo as owner
+        select *, member.pseudo as owner, book.id as id
         from book 
         left join member on book.owner_id = member.id
         ORDER BY created_at DESC LIMIT ' . $x;
@@ -25,7 +25,10 @@ class BookRepository
 
     public function getBookById(int $id) : Book 
     {
-        $sql = 'select * from book where id = :id';
+        $sql = 'select *, member.pseudo as owner, book.id as id
+        from book 
+        left join member on book.owner_id = member.id
+        where book.id = :id';
 
         $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
         $stmt->execute([
@@ -42,7 +45,10 @@ class BookRepository
      */
     public function getBooksByOwnerId(int $ownerId) : array
     {
-        $sql = 'select * from book where owner_id = :ownerId';
+        $sql = 'select *, member.pseudo as owner, book.id as id
+        from book 
+        left join member on book.owner_id = member.id
+        where owner_id = :ownerId';
 
         $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
         $stmt->execute([
@@ -61,7 +67,10 @@ class BookRepository
      */
     public function getBooksByBorrowerId(int $borrowerId) : array
     {
-        $sql = 'select * from book where borrower_id = :borrowerId';
+        $sql = 'select *, member.pseudo as owner, book.id as id
+        from book 
+        left join member on book.owner_id = member.id
+        where borrower_id = :borrowerId';
 
         $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
         $stmt->execute([
@@ -80,11 +89,14 @@ class BookRepository
      */
     public function getBooksContainingInput(string $input) : array
     {
-        $sql = 'SELECT * from book 
-                WHERE author LIKE %:input%
-                OR content LIKE %:input%
-                OR description LIKE %:input%
-                ';
+        $sql = '
+            select *, member.pseudo as owner, book.id as id
+            from book 
+            left join member on book.owner_id = member.id 
+            WHERE author LIKE %:input%
+            OR content LIKE %:input%
+            OR description LIKE %:input%
+        ';
 
         $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
         $stmt->execute([

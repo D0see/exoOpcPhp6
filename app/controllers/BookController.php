@@ -3,6 +3,7 @@
 class BookController {
 
     private BookRepository $bookRepository;
+    private MemberRepository $memberRepository;
     private LibraryService $libraryService;
     private ImageUploader $imageUploader;
 
@@ -11,12 +12,13 @@ class BookController {
         $this->bookRepository = new BookRepository();
         $this->libraryService = new LibraryService();
         $this->imageUploader = new ImageUploader();
+        $this->memberRepository = new MemberRepository();
     }
 
     public function showPersonalLibrary() : void
     {
         //todo get the owner id here
-        $ownerId = 1;
+        $ownerId = $_SESSION['idUser'];
         $books = $this->libraryService->getUserBookCollection($ownerId);
 
         $view = new View("PersonalLibrary");
@@ -40,10 +42,12 @@ class BookController {
         $bookId = Utils::request("idBook");
 
         $book = $this->bookRepository->getBookById($bookId);
+        $bookOwner = $this->memberRepository->getMemberById($book->getOwnerId());
 
         $view = new View("Book");
         $view->render("bookDetails", [
-            'book' => $book
+            'book' => $book,
+            'bookOwner' => $bookOwner
         ]);
     }
 

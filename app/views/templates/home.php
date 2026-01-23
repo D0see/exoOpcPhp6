@@ -2,10 +2,9 @@
     <?php 
         echo 'home';
         echo '<br>';
+        echo '<h2>Les derniers livres ajoutés</h2>';
         foreach ($books as $book) {
-            echo '<a href="index.php?action=viewBook&idBook=' . $book->getId() . '">';
-            echo $book->getTitle();
-            echo '</a>';
+            require __DIR__ . '/../components/book-card.php';
         }
     ?>
 </div>
