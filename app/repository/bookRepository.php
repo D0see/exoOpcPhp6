@@ -8,7 +8,7 @@ class BookRepository
 
     public function getXLastBooks(int $x) {
         $sql = '
-        select *, member.pseudo as owner, book.id as id
+        select *, member.pseudo as owner, book.id as id, book.image as image
         from book 
         left join member on book.owner_id = member.id
         ORDER BY created_at DESC LIMIT ' . $x;
@@ -25,7 +25,7 @@ class BookRepository
 
     public function getBookById(int $id) : Book 
     {
-        $sql = 'select *, member.pseudo as owner, book.id as id
+        $sql = 'select *, member.pseudo as owner, book.id as id, book.image as image
         from book 
         left join member on book.owner_id = member.id
         where book.id = :id';
@@ -45,7 +45,7 @@ class BookRepository
      */
     public function getBooksByOwnerId(int $ownerId) : array
     {
-        $sql = 'select *, member.pseudo as owner, book.id as id
+        $sql = 'select *, member.pseudo as owner, book.id as id, book.image as image
         from book 
         left join member on book.owner_id = member.id
         where owner_id = :ownerId';
@@ -67,7 +67,7 @@ class BookRepository
      */
     public function getBooksByBorrowerId(int $borrowerId) : array
     {
-        $sql = 'select *, member.pseudo as owner, book.id as id
+        $sql = 'select *, member.pseudo as owner, book.id as id, book.image as image
         from book 
         left join member on book.owner_id = member.id
         where borrower_id = :borrowerId';
@@ -90,7 +90,7 @@ class BookRepository
     public function getBooksContainingInput(string $input) : array
     {
         $sql = '
-            select *, member.pseudo as owner, book.id as id
+            select *, member.pseudo as owner, book.id as id, book.image as image
             from book 
             left join member on book.owner_id = member.id 
             WHERE author LIKE %:input%

@@ -3,6 +3,7 @@ CREATE TABLE member (
     `pseudo` VARCHAR(255) NOT NULL,
     `password`VARCHAR(255) NOT NULL, -- todo : if i have time handle encryption
     `mail` VARCHAR(255) NOT NULL,
+    `image` TEXT DEFAULT NULL,
     PRIMARY KEY (`id`)
 );
 
@@ -16,7 +17,7 @@ CREATE TABLE book (
     `id` int NOT NULL AUTO_INCREMENT,
     `author` VARCHAR(255) NOT NULL,
     `title` VARCHAR(255) NOT NULL,
-    `image` TEXT,
+    `image` TEXT DEFAULT NULL,
     `description` TEXT NOT NULL,
     `owner_id` INT NOT NULL,
     `borrower_id` INT DEFAULT NULL,

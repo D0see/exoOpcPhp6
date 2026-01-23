@@ -6,9 +6,9 @@ class MemberRepository
     {
         $sql = "
             INSERT INTO member (
-                pseudo, password
+                pseudo, password, mail, image
             ) VALUES (
-                :pseudo, :password
+                :pseudo, :password, :mail, :image
             )
         ";
 
@@ -17,6 +17,8 @@ class MemberRepository
         $stmt->execute([
             'pseudo'   => $member->getPseudo(),
             'password' => $member->getPassword(),
+            'mail' => $member->getMail(),
+            'image' => $member->getImage(),
         ]);
     }
 

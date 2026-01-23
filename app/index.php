@@ -14,9 +14,13 @@ try {
             $homeController = new HomeController();
             $homeController->showHome();
             break;
-        case 'register':
+        case 'showRegister':
             $memberController = new MemberController();
             $memberController->showRegister();
+            break;
+        case 'register':
+            $memberController = new MemberController();
+            $memberController->createMember();
             break;
         case 'connect':
             $memberController = new MemberController();

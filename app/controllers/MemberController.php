@@ -4,16 +4,18 @@
 
         private MemberRepository $memberRepository;
         private BookRepository $bookRepository;
+        private ImageUploader $imageUploader;
 
         public function __construct() 
         {
             $this->memberRepository = new MemberRepository();
             $this->bookRepository = new BookRepository();
+            $this->imageUploader = new ImageUploader();
         }
 
         public function showProfile() : void
         {
-            $memberId =Utils::request("memberId");
+            $memberId = Utils::request("memberId");
             $member = $this->memberRepository->getMemberById($memberId);
 
             $books = $this->bookRepository->getBooksByOwnerId($memberId);
@@ -76,5 +78,41 @@
 
             $view = new View("Connexion");
             $view->render("connexion");
+        }
+
+        public function showRegister() {
+            $view = new View("registration");
+            $view->render("registration");
+        }
+
+        public function createMember() {
+            $pseudo = Utils::request("pseudo", null);
+            $mail = Utils::request("mail", null);
+            $password = Utils::request("password", null);
+
+            if (!isset($pseudo) || !isset($mail) || !isset($password)) {
+                $view = new View("registration");
+                $view->render("registration", ['errorMessage' => 'champs manquants']);
+            }
+
+            $member = new Member();
+            $member
+            ->setPseudo($pseudo)
+            ->setMail($mail)
+            ->setPassword($password);
+
+            $imagePath = null;
+
+            if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+                $imagePath = $this->imageUploader->uploadImage($_FILES['image'], 'images');
+            }
+
+            if (isset($imagePath)) {
+                $member->setImage($imagePath);
+            }
+            
+            $this->memberRepository->createMember($member);
+
+            Utils::redirect("showConnect");
         }
     }

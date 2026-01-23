@@ -10,7 +10,8 @@
         <h4>PROPRIETAIRE</h4>
         <div>
             <img
-
+                src="<?= htmlspecialchars($bookOwner->getImage()) ?>"
+                alt="<?= htmlspecialchars($bookOwner->getPseudo()) ?>"
             >
             <p><?= htmlspecialchars($bookOwner->getPseudo()) ?></p>
         </div>

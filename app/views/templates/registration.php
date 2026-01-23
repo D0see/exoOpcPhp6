@@ -1,10 +1,15 @@
 
 <div class="connection-form">
-    <form action="index.php?action=connectUser" method="post" class="foldedCorner">
-        <h2>Inscription</h2>
+    <form action="index.php?action=register" method="post" class="foldedCorner">
+        <h2>Registration</h2>
         <div class="formGrid">
-            <label for="login">Pseudo</label>
-            <input type="text" name="login" id="login" required>
+            <label for="pseudo">Pseudo</label>
+            <input type="text" name="pseudo" id="pseudo" required>
+            <label for="image" class="form-group__label">Book Cover Image</label>
+            <input type="file" 
+                   name="image" 
+                   id="image" 
+                   accept="image/*">
             <label for="mail">Adresse email</label>
             <input type="text" name="mail" id="mail" required>
             <label for="password">Mot de passe</label>
