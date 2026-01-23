@@ -7,7 +7,11 @@ class BookRepository
     }
 
     public function getXLastBooks(int $x) {
-        $sql = 'select * from book ORDER BY created_at DESC LIMIT ' . $x;
+        $sql = '
+        select *, member.pseudo as owner
+        from book 
+        left join member on book.owner_id = member.id
+        ORDER BY created_at DESC LIMIT ' . $x;
 
         $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
         $stmt->execute();

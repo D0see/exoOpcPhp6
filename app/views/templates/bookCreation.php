@@ -8,7 +8,7 @@
             <input type="text" 
                    name="title" 
                    id="title" 
-                   class="form-group__input" 
+                   class="form-input" 
                    placeholder="Enter book title"
                    required>
         </div>
@@ -18,7 +18,7 @@
             <input type="text" 
                    name="author" 
                    id="author" 
-                   class="form-group__input" 
+                   class="form-input" 
                    placeholder="Enter author name"
                    required>
         </div>
@@ -28,7 +28,7 @@
             <input type="file" 
                    name="image" 
                    id="image" 
-                   class="form-group__file" 
+                   class="form-file" 
                    accept="image/*">
         </div>
 
@@ -36,7 +36,7 @@
             <label for="description" class="form-group__label">Description</label>
             <textarea name="description" 
                       id="description" 
-                      class="form-group__textarea" 
+                      class="form-textarea" 
                       rows="6"
                       placeholder="Enter book description"
                       required></textarea>
@@ -44,7 +44,7 @@
 
         <div class="form-actions">
             <button type="submit" class="form-actions__submit">
-                Create Book
+                Créé le livre
             </button>
         </div>
         

@@ -1,10 +1,9 @@
 <div class="articleList">
     <?php 
-        echo 'library';
+        echo '<h2> Nos livres à l’échange </h2>';
         foreach ($books as $book) {
-            echo '<a href="index.php?action=viewBook&idBook=' . $book->getId() . '">';
-            echo $book->getTitle();
-            echo '</a>';
+            require __DIR__ . '/../components/book-card.php';
+            
         }
     ?>
 </div>

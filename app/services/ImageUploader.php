@@ -8,12 +8,6 @@ class ImageUploader {
             mkdir($uploadDir, 0755, true);
         }
         
-        // Validate file type
-        // $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-        // if (!in_array($file['type'], $allowedTypes)) {
-        //     throw new Exception('Invalid file type');
-        // }
-        
         // Validate file size (e.g., max 5MB)
         if ($file['size'] > 5 * 1024 * 1024) {
             throw new Exception('File too large');
