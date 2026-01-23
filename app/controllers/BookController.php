@@ -99,11 +99,14 @@ class BookController {
         $bookId = Utils::request("idBook", -1);
         $userId = $_SESSION['idUser'];
 
-        $books = $this->libraryService->borrowBook($bookId, $userId, (new DateTime('now'))->format('Y-m-d H:i:s'));
+        $this->libraryService->borrowBook($bookId, $userId, (new DateTime('now'))->format('Y-m-d H:i:s'));
+        $book = $this->libraryService->getBook($bookId);
+        $bookOwner = $this->memberRepository->getMemberById($book->getOwnerId());
 
         $view = new View("Book");
         $view->render("bookDetails", [
-            'book' => $this->libraryService->getBook($bookId)
+            'book' => $book,
+            'bookOwner' => $bookOwner
         ]);
     }
 
@@ -112,11 +115,14 @@ class BookController {
         $bookId = Utils::request("idBook", -1);
         $userId = $_SESSION['idUser'];
 
-        $books = $this->libraryService->returnBook($bookId, $userId);
+        $this->libraryService->returnBook($bookId, $userId);
+        $book = $this->libraryService->getBook($bookId);
+        $bookOwner = $this->memberRepository->getMemberById($book->getOwnerId());
 
         $view = new View("Book");
         $view->render("bookDetails", [
-            'book' => $this->libraryService->getBook($bookId)
+            'book' => $book,
+            'bookOwner' => $bookOwner
         ]);
     }
 
