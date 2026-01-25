@@ -56,7 +56,7 @@
                 throw new Exception("L'utilisateur demandé n'existe pas.");
             }
 
-            if ($password !== $user->getPassword()) {
+            if (!password_verify($password, $user->getPassword())) {
                 throw new Exception("Le mot de passe est incorrect");
             }
 
@@ -94,6 +94,9 @@
                 $view = new View("registration");
                 $view->render("registration", ['errorMessage' => 'champs manquants']);
             }
+
+            //hashpassword
+            $password = password_hash($password, PASSWORD_DEFAULT);
 
             $member = new Member();
             $member
