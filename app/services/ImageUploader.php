@@ -11,7 +11,6 @@ class ImageUploader {
         $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
         $filename = uniqid('img_', true) . '.' . $extension;
         $filepath = $uploadDir . $filename;
-        
         if (!move_uploaded_file($file['tmp_name'], $filepath)) {
             throw new Exception('Failed to upload file');
         }

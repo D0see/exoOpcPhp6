@@ -8,10 +8,10 @@ class BookRepository
 
     public function getXLastBooks(int $x) {
         $sql = '
-        select *, member.pseudo as owner, book.id as id, book.image as image
-        from book 
-        left join member on book.owner_id = member.id
-        ORDER BY created_at DESC LIMIT ' . $x;
+            select *, member.pseudo as owner, book.id as id, book.image as image
+            from book 
+            left join member on book.owner_id = member.id
+            ORDER BY created_at DESC LIMIT ' . $x;
 
         $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
         $stmt->execute();
@@ -158,7 +158,7 @@ class BookRepository
         return $this->getBookById($bookId);
     }
 
-    public function setBookToLent($userId, int $bookId, string $borrowedAt) {
+    public function setBookToLent($userId, int $bookId, string $borrowedAt): void {
         $sql ="
             UPDATE book 
             set borrower_id = :borrower_id,
@@ -174,7 +174,7 @@ class BookRepository
         ]);
     }
 
-    public function setBookToFree(int $bookId) {
+    public function setBookToFree(int $bookId): void {
         $sql ="
             UPDATE book 
             set borrower_id = NULL,
@@ -188,7 +188,7 @@ class BookRepository
         ]);
     }
 
-    public function deleteBook($bookId) {
+    public function deleteBook($bookId): void {
         $sql ="
             Delete from book 
             where id = :id
