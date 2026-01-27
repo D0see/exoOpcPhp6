@@ -1,43 +1,58 @@
 <?php 
-/**
- * Ce fichier est le template principal qui "contient" ce qui aura été généré par les autres vues.  
- * 
- * Les variables qui doivent impérativement être définie sont : 
- *      $title string : le titre de la page.
- *      $content string : le contenu de la page. 
- */
 
-?>
+
+?>  
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tom troc</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
 </head>
 
 <body>
     <header>
         <nav>
-            <p>logo</p>
-            <a href="index.php?action=home">Accueil</a>
-            <a href="index.php?action=viewLibrary">Nos livres à l'échange</a>
-            <?php 
-                if (isset($_SESSION['user'])) {
-                    echo '<a href="index.php?action=viewMessagerie">Messagerie</a>';
-                    echo '<a href="index.php?action=viewMyProfile">Mon compte</a>';
-                    echo '<a href="index.php?action=disconnect">Déconnexion</a>';
-                    echo '<a href="index.php?action=viewBookCreationForm">Ajouter un livre</a>';
-                } else {
-                    echo '<a href="index.php?action=showConnect">Connexion</a>';
-                }
-            ?>
+            <div class='inner-nav'>
+                <div class='nav-block'>
+                    <img src="/phpexo6/exoOpcPhp6/app/assets/logo.png" alt="Logo">
+                    <a href="index.php?action=home" class=<?php $_GET['action'] === 'home' ? 'bold' : ''; ?>>
+                        Accueil
+                    </a>
+                    <a href="index.php?action=viewLibrary">Nos livres à l'échange</a>
+                </div>
+                <div class='nav-block'>
+                <?php 
+                    if (isset($_SESSION['user'])) {
+                        echo '
+                        <a href="index.php?action=viewMessagerie">
+                        <i class="fa-regular fa-comment"></i>
+                            Messagerie
+                        </a>';
+                        echo '
+                        <a href="index.php?action=viewMyProfile">
+                        <i class="fa-regular fa-user"></i>
+                            Mon compte
+                        </a>';
+                        echo '<a href="index.php?action=disconnect">Déconnexion</a>';
+                        // echo '<a href="index.php?action=viewBookCreationForm">Ajouter un livre</a>';
+                    } else {
+                        echo '<a href="index.php?action=showConnect">Connexion</a>';
+                    }
+                ?>
+                </div>
+            </div>
         </nav>
     </header>
 
     <main>    
-        <?= $content /* Ici est affiché le contenu réel de la page. */ ?>
+        <?= $content ?>
     </main>
     
     <footer>
