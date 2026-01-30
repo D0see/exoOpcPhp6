@@ -112,7 +112,8 @@ footer {
     border-bottom-left-radius: 5px;
     width: 200px;
     height: 324px;
-    border: 1px solid red;
+    background-color: white;
+    
 }
 
 .book-card-image {
@@ -127,7 +128,7 @@ footer {
     gap: 15px;
     width: 170px;
     height: 100px;
-    border: 1px solid red;
+    
 }
 
 .book-description > :last-child {
@@ -167,14 +168,24 @@ footer {
     display: flex;
     flex-direction: column;
     border-radius: 5px;
-    background-color: var(--green);
     height: 63px;
     width: fit-content;
     justify-content: space-around;
 }
 
-.main-button-content {
+.full-button {
     color: white;
+    background-color: var(--green);
+    border: 2px solid var(--green);
+}
+
+.hollow-button {
+    color: var(--green);
+    background-color: none;
+    border: 2px solid var(--green);
+}
+
+.main-button-content {
     margin: 0 40px;
     font-family: system-ui, sans-serif;
     font-weight: 600;
@@ -192,7 +203,7 @@ footer {
     flex-direction: row;
     margin: 0 auto;
     gap: 50px;
-    border: 1px solid red;
+    
     justify-content: center;
 }
 
@@ -201,7 +212,7 @@ footer {
 .block-element {
     display: flex;
     width: 100%;
-    border: 1px solid red;
+    
 }
 
 .block-element-title {
@@ -221,6 +232,16 @@ footer {
     font-size: 16px;
 }
 
+.block-element-subtitle {
+    font-weight: 400;
+    font-style: Italic;
+    font-size: 10px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: var(--subtitle-color);
+    justify-self: flex-end;
+}
+
 /** HOME PAGE */
 
 .last-books {
@@ -235,6 +256,7 @@ footer {
 
 .introduction {
     background-color: var(--nav-color);
+    width: 100%;
     display: flex;
     flex-direction: row;
     gap: 50px;
@@ -242,14 +264,89 @@ footer {
 }
 
 .introduction-left {
-    width: 33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    width: 25%;
+    
 }
 
 .introduction-right {
-    width: 33%;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    
+    justify-content: center;
 }
 
 .introduction-image {
     width: 404px;
     height: auto;
+    margin: 0 auto;
+}
+
+.how-it-works {
+    background-color: var(--nav-color);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 50px;
+    align-items: center;
+    padding: 50px;
+}
+
+.display-simple-blocks {
+    display: flex;
+    flex-direction: row;
+    
+    gap: 5%;
+    justify-content: space-around;
+    width: 80%;
+}
+
+.simple-block {
+    width: 20%;
+    
+    padding: 25px 15px;   
+    text-align: center;
+    border-radius: 5px;
+    background-color: white;
+    font-family: system-ui, sans-serif;
+}
+
+.outro {
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 50px;
+    align-items: center;
+}
+
+.inner-outro {
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    gap: 50px;
+    align-items: left;
+}
+
+.outro-image {
+    width: 100%;
+}
+
+.heart {
+    position: relative;
+    left: 80%;
+    bottom: 15%;
+    width: 100px;
+    height: 100px;
+}
+
+/** UTILS */
+
+.align-left {
+    text-align: left;
 }
