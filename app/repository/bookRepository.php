@@ -93,12 +93,14 @@ class BookRepository
             select *, member.pseudo as owner, book.id as id, book.image as image
             from book 
             left join member on book.owner_id = member.id 
-            WHERE author LIKE %:input%
-            OR content LIKE %:input%
-            OR description LIKE %:input%
+            WHERE author LIKE :input
+            OR title LIKE :input
+            -- OR description LIKE :input
         ';
 
         $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
+
+        $input = '%' . $input . '%';
         $stmt->execute([
             'input' => $input,
         ]);

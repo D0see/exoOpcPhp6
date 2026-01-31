@@ -29,7 +29,13 @@ class BookController {
 
     public function showLibrary() : void
     {
-        $books = $this->bookRepository->getXLastBooks(24);
+        $input = Utils::request("input", null);
+        if (isset($input)) {
+            $books = $this->libraryService->getBooksContainingInput($input);
+        } else {
+            $books = $this->bookRepository->getXLastBooks(24);
+        }
+        
 
         $view = new View("Library");
         $view->render("library", [
@@ -62,7 +68,6 @@ class BookController {
     {
         $title = Utils::request("title", null);
         $author = Utils::request("author", null);
-        $image = Utils::request("image", null);
         $description = Utils::request("description", null);
 
         if (!isset($title) || !isset($author) || !isset($description)) {

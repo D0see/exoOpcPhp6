@@ -2,7 +2,7 @@ html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
+small, strike, strong, sub, sup, tt, var, input
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
@@ -113,6 +113,7 @@ footer {
     width: 200px;
     height: 324px;
     background-color: white;
+    
     
 }
 
@@ -343,6 +344,58 @@ footer {
     bottom: 15%;
     width: 100px;
     height: 100px;
+}
+
+/** LIBRARY */
+
+.library {
+    
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 50px;
+    padding: 50px 15%;
+    background-color: var(--background-color);
+}
+
+.library-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.library-search {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid var(--nav-color);
+    height: 48px;
+    width: 250px;
+    border-radius: 4px;
+    background-color: white;
+    align-items: center;
+}
+
+.library-search > input {
+    border: none;
+}
+
+.library-search > i {
+    color: var(--subtitle-color)
+}
+
+.library-search > * {
+    margin-left: 8px;
+}
+
+.library-display {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 200px);
+    gap: 45px;
+    padding: 0;
+    justify-content: space-between;
+    
 }
 
 /** UTILS */
