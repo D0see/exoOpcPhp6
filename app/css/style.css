@@ -170,6 +170,9 @@ footer {
     flex-direction: column;
     border-radius: 5px;
     height: 63px;
+    font-size: 16px;
+    font-weight: 500;
+    min-width: 200px;
     width: fit-content;
     justify-content: space-around;
 }
@@ -241,6 +244,25 @@ footer {
     letter-spacing: 0%;
     color: var(--subtitle-color);
     justify-self: flex-end;
+}
+
+.block-element-label {
+    font-family: Inter;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 14px;
+    line-height: 100%;
+    color: var(--subtitle-color)
+}
+
+.block-element-input {
+    border: 1px solid var(--nav-color);
+    height: 50px;
+    width: 320px;
+    border-radius: 4px;
+    background-color: white;
+    align-items: center;
+
 }
 
 /** HOME PAGE */
@@ -396,6 +418,64 @@ footer {
     padding: 0;
     justify-content: space-between;
     
+}
+
+/** CONNEXION */
+
+.connexion-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--background-color);
+}
+
+.connexion-image {
+    width: 50%;
+    justify-self: right;
+}
+
+.connexion-form {
+    position: relative;
+    bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin: 0 auto;
+    align-self: center;
+}
+
+.input-label-combo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.block-element-label {
+
+}
+
+.connexion-button {
+    width: 100%;
+}
+
+.connexion-title {
+    text-align: left;
+    margin-bottom: 80px;
+} 
+
+.connexion-link {
+    text-decoration: underline;
+}
+
+.form-subtitle {
+    position:relative;
+    bottom: 35px;
+
+}
+
+.form-subtitle-inscription {
+    position:relative;
+    bottom: 0px;
 }
 
 /** UTILS */
