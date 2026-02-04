@@ -29,6 +29,7 @@ a {
     --subtitle-color: #A6A6A6;
     --background-color: #FAF9F7;
     --green: #00AC66;
+    --user-message-color:#EDF2F6;
 }
 
 /* NAVBAR */
@@ -476,6 +477,120 @@ footer {
 .form-subtitle-inscription {
     position:relative;
     bottom: 0px;
+}
+
+/** MESSAGERIE */
+
+.messagerie {
+    background-color: var(--nav-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border: 1px solid red;
+    gap: 50px;
+    width: 100%;
+    min-height: 100%;
+}
+
+.messagerie-left {
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+    width: 20%;
+}
+
+.messagerie-left >:first-child {
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+
+.messagerie-title {
+    text-align: left;
+    margin-left: 25px;
+}
+
+.messagerie-contact {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid red;
+    padding-left: 15px;
+    padding-right: 25px;
+    min-width: 150px;
+    min-height: 60px;
+    align-items: center;
+    gap: 15px;
+}
+
+.messagerie-contact-detail {
+    width: 100%;
+}
+
+.messagerie-contact-top-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border: 1px solid red;
+    justify-content: space-between;
+}
+
+.messagerie-contact-image {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid red;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 1 / 1;
+}
+
+.messagerie-contact-message {
+    color: var(--subtitle-color);
+}
+
+.messagerie-right {
+    width: 60%;
+    border: 1px solid red;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.user-message {
+    align-self: flex-end;
+}
+
+.message-contact-image {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid red;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 1 / 1;
+}
+
+.messagerie-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 90%;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+.messagerie-input {
+    width: 75%;
+    height: 40px;
+}
+
+.messagerie-button {
+    min-width: 125px;
+    height: 40px !important;
 }
 
 /** UTILS */
