@@ -29,7 +29,7 @@ class MessagerieController {
 
         $newContact = null;
         
-        $isNewContact = true;
+        $isNewContact = $contactId ? true : false;
         foreach($lastMessages as $message) {
             if ($message['correspondant']->getId() == $contactId) {
                 $isNewContact = false;
