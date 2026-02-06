@@ -6,10 +6,12 @@
 class MessagerieController {
 
     private MessagerieService $messagerieService;
+    private MemberRepository $memberRepository;
 
     public function __construct() 
     {
         $this->messagerieService = new MessagerieService();
+        $this->memberRepository = new MemberRepository();
     }
 
     public function showMessagerie() : void
@@ -17,25 +19,43 @@ class MessagerieController {
         $userId = $_SESSION['idUser'];
         $contactId = Utils::request("idContact");;
 
+        $contact = $contactId ? $this->memberRepository->getMemberById($contactId) : null;
         $lastMessages = $this->messagerieService->getLastMessageOfEachDiscussionByUserId($userId);
 
-        $currentConversation = null;
+        $currentConversation = [];
         if (isset($contactId)) {
            $currentConversation  = $this->messagerieService->getConversation($userId, $contactId);
-        } 
+        }
+
+        $newContact = null;
+        
+        $isNewContact = true;
+        foreach($lastMessages as $message) {
+            if ($message['correspondant']->getId() == $contactId) {
+                $isNewContact = false;
+                break;
+            }
+        }
+
+        if ($isNewContact) {
+            $newContact = $this->memberRepository->getMemberById($contactId);
+        }
 
         // On affiche la page d'administration.
         $view = new View("messagerie");
         $view->render("messagerie", [
             'lastMessages' => $lastMessages,
-            'conversation' => $currentConversation
+            'conversation' => $currentConversation,
+            'contact' => $contact,
+            'newContact' => $newContact,
+            'contactId' => $contactId
         ]);
     }
 
     public function sendMessage() {
 
         $userId = $_SESSION['idUser'];
-        $contactId = Utils::request("idContact");
+        $contactId = (int) Utils::request("idContact");
         $content = Utils::request("message");
 
         $message = new Message();

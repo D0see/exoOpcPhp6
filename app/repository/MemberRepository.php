@@ -34,7 +34,7 @@ class MemberRepository
         if ($row === false) {
             return null;
         }
-
+        
         return new Member($row);
     }
 
