@@ -4,6 +4,7 @@ CREATE TABLE member (
     `password`VARCHAR(255) NOT NULL, -- todo : if i have time handle encryption
     `mail` VARCHAR(255) NOT NULL,
     `image` TEXT DEFAULT NULL,
+    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 );
 

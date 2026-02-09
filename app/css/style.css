@@ -669,6 +669,110 @@ footer {
     height: 45px;
 }
 
+/** PROFILE DETAILS */
+
+.account-block {
+    display: flex;
+    flex-direction: row;
+    gap: 3%;
+    justify-content: center;
+    padding-top: 7vh;
+    background-color: #f3f1f1b4;
+}
+
+.account-left {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    border: 1px solid red;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+.account-right {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    border: 1px solid red;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+table {
+    border-collapse: collapse; /* key to remove spacing */
+    width: 100%; /* optional, makes table full width */
+}
+
+th, td {
+    padding: 0px 50px; /* remove internal padding if needed */
+}
+
+.table-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 1 / 1;
+}
+
+thead {
+    
+}
+
+.table-headers {
+    height: 5vh;
+    background-color: white;
+    border-bottom: 2px solid #f3f1f1b4;
+}
+
+.table-header {
+    font-family: Inter;
+    font-weight: 600;
+    font-style: Semi Bold;
+    font-size: 8px;
+    line-height: 100%;
+    letter-spacing: 8%;
+    vertical-align: bottom;
+    text-align: left;
+    padding-bottom: 5px;
+}
+
+.table-row {
+    padding: 20px;
+}
+
+.table-image {
+    margin: 20px 0;
+}
+
+.table-data {
+    font-family: Inter;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 12px;
+    text-align: center;
+    justify-self: center;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.table-description {
+    font-family: Inter;
+    font-weight: 400;
+    font-style: Italic;
+    font-size: 12px;
+}
+
+.table-body tr:nth-child(odd) {
+    background-color: white;
+}
+
+.table-body tr:nth-child(even) {
+    background-color: var(--user-message-color);
+}
+
 /** UTILS */
 
 .align-left {

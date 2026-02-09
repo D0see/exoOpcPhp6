@@ -17,7 +17,7 @@ class MessagerieController {
     public function showMessagerie() : void
     {
         $userId = $_SESSION['idUser'];
-        $contactId = Utils::request("idContact");;
+        $contactId = (int) Utils::request("idContact");;
 
         $contact = $contactId ? $this->memberRepository->getMemberById($contactId) : null;
         $lastMessages = $this->messagerieService->getLastMessageOfEachDiscussionByUserId($userId);

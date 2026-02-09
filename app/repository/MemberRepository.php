@@ -18,7 +18,7 @@ class MemberRepository
             'pseudo'   => $member->getPseudo(),
             'password' => $member->getPassword(),
             'mail' => $member->getMail(),
-            'image' => $member->getImage(),
+            'image' => $member->getImage()
         ]);
     }
 

@@ -6,6 +6,7 @@ class Member extends AbstractEntity
     private string $password;
     private ?string $image = null;
     private string $mail;
+    private string $createdAt;
 
     public function getPseudo(): string
     {
@@ -27,6 +28,9 @@ class Member extends AbstractEntity
         return $this->mail;
     }
 
+    public function getCreatedAt(): string {
+        return $this->createdAt;
+    }
 
     public function setPseudo(string $pseudo): self
     {
@@ -49,6 +53,12 @@ class Member extends AbstractEntity
     public function setMail(string $mail): self
     {
         $this->mail = $mail;
+        return $this;
+    }
+
+    public function setCreatedAt(string $createdAt): self
+    {
+        $this->createdAt = $createdAt;
         return $this;
     }
 }
