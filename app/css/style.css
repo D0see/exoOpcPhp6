@@ -591,8 +591,8 @@ footer {
     display: flex;
     flex-direction: column-reverse;
     gap: 25px;
-    overflow-y: scroll;
-    max-height: 80%;
+    overflow-y: auto;
+    height: 80%;
     padding-right: 20px;
     
 }
@@ -676,37 +676,68 @@ footer {
     flex-direction: row;
     gap: 3%;
     justify-content: center;
-    padding-top: 7vh;
+    padding: 7vh 0px;
     background-color: #f3f1f1b4;
 }
 
 .account-left {
     display: flex;
     flex-direction: column;
-    width: 25%;
-    border: 1px solid red;
+    width: 23%;
+    background-color: white;
     border-radius: 20px;
     justify-content: center;
     align-items: center;
-    min-height: 70vh;
+    height: 80vh;
+    justify-content: space-around;
+}
+
+.account-image {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+.account-info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    text-align: center;
+}
+
+.account-left-member-since {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.account-left-book-num {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .account-right {
     display: flex;
     flex-direction: column;
     width: 55%;
-    border: 1px solid red;
     border-radius: 20px;
     overflow: hidden;
+    overflow-y: auto;
+    height: 80vh;
 }
 
 table {
-    border-collapse: collapse; /* key to remove spacing */
-    width: 100%; /* optional, makes table full width */
+    border-collapse: collapse; 
+    width: 100%; 
 }
 
 th, td {
-    padding: 0px 50px; /* remove internal padding if needed */
+    padding: 0px 50px; 
+}
+
+th {
+    padding-top: 30px;
 }
 
 .table-image {
@@ -771,6 +802,78 @@ thead {
 
 .table-body tr:nth-child(even) {
     background-color: var(--user-message-color);
+}
+
+/* MY PROFILE DETAILS */
+
+.my-account-left {
+    width: 39%;
+}
+.my-account-right {
+    display: flex;
+    flex-direction: column;
+    width: 39%;
+    border-radius: 20px;
+    overflow: hidden;
+    overflow-y: auto;
+    height: 80vh;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+}
+
+.my-account-right .block-element-title {
+    font-size: 25px;
+    align-self: flex-start;
+}
+
+.my-account-bottom {
+    background-color: #f3f1f1b4;
+    height: 80vh;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.my-account-table {
+    width: 81%;
+    margin: 0 auto;
+    border-collapse: separate; 
+    border-spacing: 0;
+    overflow: hidden;
+    border-radius: 20px;
+    display: block;
+    max-height: calc(80vh - 40px); 
+    overflow-y: auto;
+}
+
+.my-account-table thead,
+.my-account-table tbody {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.profile-form {
+    align-items: center;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background-color: white;   
+    width: fit-content;
+    justify-content: space-around;
+}
+
+.profile-form > a {
+    text-align: center;
+}
+
+.profile-form input {
+    background-color: #EDF2F6;
+}
+
+.profile-form-button {
+    align-self: flex-start;
 }
 
 /** UTILS */

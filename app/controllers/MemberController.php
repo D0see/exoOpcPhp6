@@ -34,8 +34,8 @@
 
             $books = $this->bookRepository->getBooksByOwnerId($memberId);
 
-            $view = new View("ProfileDetails");
-            $view->render("profileDetails", [
+            $view = new View("MyProfileDetails");
+            $view->render("myProfileDetails", [
                 'member' => $member,
                 'books' => $books
             ]);

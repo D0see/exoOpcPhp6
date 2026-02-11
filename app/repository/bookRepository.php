@@ -11,7 +11,7 @@ class BookRepository
             select *, member.pseudo as owner, book.id as id, book.image as image
             from book 
             left join member on book.owner_id = member.id
-            ORDER BY created_at DESC LIMIT ' . $x;
+            ORDER BY book.created_at DESC LIMIT ' . $x;
 
         $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
         $stmt->execute();

@@ -1,12 +1,16 @@
 <div class="block-elem">
     <div class="account-block">
         <div class="account-left">
-            <img src="<?php $member->getImage() ?>"/>
+            <img class="account-image" src="<?php $member->getImage() ?>"/>
             <div class="account-info">
-                <h2 class="block-element-title"><?= $member->getPseudo() ?></h2>
-                <h3 class="block-element-label"> membre depuis <?= (new DateTime())->diff(new DateTime($member->getCreatedAt()))->y ?> an</h3>
-                <h4>BIBLIOTHEQUE</h4>
-                <p>icon <?=  count($books) ?> livres</p>
+                <div class="account-left-member-since">
+                    <h2 class="block-element-title"><?= $member->getPseudo() ?></h2>
+                    <h3 class="block-element-label"> membre depuis <?= (new DateTime())->diff(new DateTime($member->getCreatedAt()))->y ?> an</h3>
+                </div>
+                <div class="account-left-book-num">
+                    <h4>BIBLIOTHEQUE</h4>
+                    <p>icon <?=  count($books) ?> livres</p>
+                </div>
                 <a class="main-button hollow-button"
                     href="index.php?action=viewMessagerie&idContact=<?= $member->getId() ?>">
                     Écrire un message

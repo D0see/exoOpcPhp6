@@ -15,7 +15,7 @@ class MessageRepository
         SELECT * FROM message
         WHERE (sender_id = :userId AND receiver_id = :contactId)
         OR (sender_id = :contactId AND receiver_id = :userId)
-        ORDER BY created_at ASC
+        ORDER BY message.created_at ASC
         ';
 
         $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
