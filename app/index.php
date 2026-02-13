@@ -58,6 +58,7 @@ try {
             $bookController = new BookController();
             $bookController->showBookCreationForm();
             break;
+        
         case 'createBook':
             $bookController = new BookController();
             $bookController->createBook();
@@ -66,9 +67,9 @@ try {
             $bookController = new BookController();
             $bookController->deleteBook();
             break;
-        case 'showEditBook':
+        case 'showBookForm':
             $bookController = new BookController();
-            $bookController->showEditBook();
+            $bookController->showBookForm();
             break;
         case 'editBook':
             $bookController = new BookController();

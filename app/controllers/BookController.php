@@ -69,6 +69,7 @@ class BookController {
         $title = Utils::request("title", null);
         $author = Utils::request("author", null);
         $description = Utils::request("description", null);
+        $disponibility = Utils::request("disponibility", null);
 
         if (!isset($title) || !isset($author) || !isset($description)) {
             $view = new View("BookCreation");
@@ -80,8 +81,7 @@ class BookController {
         ->setTitle($title)
         ->setAuthor($author)
         ->setDescription($description)
-        ->setOwnerId($_SESSION['idUser'])
-        ->setStateId(1);
+        ->setOwnerId($_SESSION['idUser']);
 
         $imagePath = null;
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
@@ -97,6 +97,34 @@ class BookController {
         $view->render("bookDetails", [
             'book' => $book
         ]);
+    }
+    
+    public function editBook(): void
+    {
+        $bookId = Utils::request("idBook", -1);
+        $idUser = $_SESSION['idUser'];
+
+        $title = Utils::request("title", null);
+        $author = Utils::request("author", null);
+        $description = Utils::request("description", null);
+        $disponibility = Utils::request("disponibility", null);
+
+        $book = $this->libraryService->getBook($bookId);
+
+        $book
+        ->setTitle($title)
+        ->setAuthor($author)
+        ->setDescription($description);
+
+        if ($disponibility === "0") {
+            $book->setBorrowerId($idUser);
+        }
+
+        $this->libraryService->updateBook($book, $idUser);
+        
+        header("Location: /phpexo6/exoOpcPhp6/app/index.php?action=showBook&idBook=" . $bookId);
+
+        exit();
     }
 
     public function borrowBook() : void
@@ -142,25 +170,26 @@ class BookController {
         header("Location: /phpexo6/exoOpcPhp6/app/index.php?action=viewMyProfile");
     }
 
-    public function showEditBook(): void
+    public function showBookForm(): void
     {
-        $bookId = Utils::request("idBook", -1);
+
+        $bookId = Utils::request("idBook", null);
         $idUser = $_SESSION['idUser'];
-
-        $book = $this->libraryService->getBook($bookId);
         
-    }
-
-    public function editBook(): void
-    {
-        $bookId = Utils::request("idBook", -1);
-        $idUser = $_SESSION['idUser'];
-
-        $book = $this->libraryService->getBook($bookId);
-        $this->libraryService->updateBook($book, $idUser);
+        if (isset($idBook)) {
+            $book = $this->libraryService->getBook($bookId);
+            if ($book->getOwnerId() !== $idUser) {
+                header("Location: /phpexo6/exoOpcPhp6/app/index.php?action=showBookForm");
+            }
+        } else {
+            $book = null;
+        }
         
-        header("Location: /phpexo6/exoOpcPhp6/app/index.php?action=showBook&idBook=" . $bookId);
-        exit();
+        $view = new View("BookForm");
+        $view->render("bookForm", [
+            'book' => $book
+        ]);
+        
     }
 
 }
