@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="my-account-right">
-            <form class="profile-form">
+            <form action="index.php?action=updateMyProfile" class="profile-form" method='POST'>
                 <h2 class="block-element-title">Vos informations personelles</h2>
                 <div class="input-label-combo">
                     <label for="mail" class="block-element-label">Adresse Mail</label>
@@ -23,7 +23,7 @@
                         id="mail" 
                         class="block-element-input" 
                         placeholder=" <?= $member->getMail() ?>"
-                        required>
+                        >
                 </div>
                 <div class="input-label-combo">
                     <label for="password" class="block-element-label">Mot de passe</label>
@@ -32,7 +32,7 @@
                         id="password" 
                         class="block-element-input" 
                         placeholder=" ***"
-                        required>
+                        >
                 </div>
                 <div class="input-label-combo">
                     <label for="pseudo" class="block-element-label">Pseudo</label>
@@ -41,9 +41,14 @@
                         id="mail"
                         class="block-element-input" 
                         placeholder=" <?= $member->getPseudo() ?>"
-                        required>
+                        >
                 </div>
-                <a class="main-button hollow-button profile-form-button">Enregistrer</a>
+                <button
+                class="main-button hollow-button profile-form-button"
+                type="submit"
+                >
+                    Enregistrer
+                </button>
             </form>
         </div>
     </div>
@@ -57,6 +62,8 @@
                     <th class="table-header">TITRE</th>
                     <th class="table-header">AUTEUR</th>
                     <th class="table-header">DESCRIPTION</th>
+                    <th class="table-header">DISPONIBILITE</th>
+                    <th class="table-header">ACTION</th>
                 </tr>
             </thead>
             <tbody class="table-body">
@@ -68,6 +75,20 @@
                         <td class="table-data"><div><?= $book->getTitle() ?></div></td>
                         <td class="table-data"><div><?= $book->getAuthor() ?></div></td>
                         <td class="table-data table-description"><div><?= $book->getDescription() ?></div></td>
+                        <td class="table-data">
+                            <?php
+                                $isAvailable = $book->getBorrowerId() !== null;
+                                require __DIR__ . '/../components/disponibility-marker.php'; 
+                            ?>
+                        </td>
+                        <td class="table-data">
+                            <div class="table-data-actions">
+                                <a class="edit">Éditer</a>
+                                <a class="delete" href="index.php?action=deleteBook&idBook=<?= $book->getId() ?>">
+                                    Supprimer
+                                </a>
+                            </div>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

@@ -131,4 +131,36 @@ class BookController {
         ]);
     }
 
+    public function deleteBook(): void
+    {
+        $bookId = Utils::request("idBook", -1);
+        $idUser = $_SESSION['idUser'];
+
+        $book = $this->libraryService->getBook($bookId);
+        $this->libraryService->deleteBook($book, $idUser);
+
+        header("Location: /phpexo6/exoOpcPhp6/app/index.php?action=viewMyProfile");
+    }
+
+    public function showEditBook(): void
+    {
+        $bookId = Utils::request("idBook", -1);
+        $idUser = $_SESSION['idUser'];
+
+        $book = $this->libraryService->getBook($bookId);
+        
+    }
+
+    public function editBook(): void
+    {
+        $bookId = Utils::request("idBook", -1);
+        $idUser = $_SESSION['idUser'];
+
+        $book = $this->libraryService->getBook($bookId);
+        $this->libraryService->updateBook($book, $idUser);
+        
+        header("Location: /phpexo6/exoOpcPhp6/app/index.php?action=showBook&idBook=" . $bookId);
+        exit();
+    }
+
 }

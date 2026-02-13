@@ -53,4 +53,25 @@ class MemberRepository
 
         return new Member($row);
     }
+
+    public function updateMember(Member $member) {
+        
+        $sql ="
+            UPDATE member 
+                SET pseudo = :pseudo, 
+                mail = :mail,
+                password = :password, 
+                image = :image
+            where id = :id
+        ";
+
+        $stmt = DBManager::getInstance()->getPDO()->prepare($sql);
+        $stmt->execute([
+            'pseudo' => $member->getPseudo(),
+            'mail' => $member->getMail(),
+            'password' => $member->getPassword(),
+            'image' => $member->getImage(),
+            'id' => $member->getId()
+        ]);
+    }
 }

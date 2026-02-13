@@ -22,6 +22,7 @@ time, mark, audio, video {
 a {
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
 }
 
 :root {
@@ -853,6 +854,18 @@ thead {
     table-layout: fixed;
 }
 
+.table-data-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    text-decoration: underline;
+}
+
+.table-data-actions > .delete {
+    color: red;
+    text-decoration: underline red !important;
+}
+
 .profile-form {
     align-items: center;
     height: 90%;
@@ -875,6 +888,25 @@ thead {
 .profile-form-button {
     align-self: flex-start;
 }
+
+/** disponibility-marker */
+
+.disponibility-marker {
+    border-radius: 10px;
+    color: white;
+    padding: 3px 5px;
+    text-align: center;
+}
+
+.disponibility-marker.available {
+    background-color: lightgreen;
+}
+
+.disponibility-marker.non-available {
+    background-color: lightcoral;
+}
+
+
 
 /** UTILS */
 

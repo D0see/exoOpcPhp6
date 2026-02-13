@@ -59,7 +59,19 @@ class LibraryService
         return $this->bookRepository->createBook($book);
     }
 
-    public function deleteBook($bookId) {
-        return $this->bookRepository->deleteBook($bookId);
+    public function updateBook(Book $book, int $idUser) {
+
+        if ($book->getOwnerId() === $idUser) {
+            return $this->bookRepository->updateBook($book);
+        }
+        
+    }
+
+    public function deleteBook(Book $book, int $idUser) {
+
+        if ($book->getOwnerId() === $idUser) {
+            return $this->bookRepository->deleteBook($book->getId());
+        }
+        
     }
 }

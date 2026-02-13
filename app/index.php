@@ -42,6 +42,10 @@ try {
             $memberController = new MemberController();
             $memberController->showProfile();
             break;
+        case 'updateMyProfile':
+            $memberController = new MemberController();
+            $memberController->updateMyProfile();
+            break;
         case 'viewLibrary':
             $bookController = new BookController();
             $bookController->showLibrary();
@@ -57,6 +61,18 @@ try {
         case 'createBook':
             $bookController = new BookController();
             $bookController->createBook();
+            break;
+        case 'deleteBook':
+            $bookController = new BookController();
+            $bookController->deleteBook();
+            break;
+        case 'showEditBook':
+            $bookController = new BookController();
+            $bookController->showEditBook();
+            break;
+        case 'editBook':
+            $bookController = new BookController();
+            $bookController->editBook();
             break;
         case 'borrowBook':
             $bookController = new BookController();
