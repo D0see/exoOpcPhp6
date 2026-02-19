@@ -1,5 +1,5 @@
 <div class="book-details-card">
-    <div>
+    <div class="book-details-left">
         <img
             src="<?= htmlspecialchars($book->getImage()) ?>"
             alt="<?= htmlspecialchars($book->getTitle()) ?>"
@@ -8,10 +8,11 @@
     <div class="book-details-right">
         <h2 class="block-element-title"><?= htmlspecialchars($book->getTitle()) ?></h3>
         <h3 class="block-element-subtitle">par <?= $book->getAuthor() ?></h3>
+        <h4 class="table-header">______________</h4>
         <h4 class="table-header">DESCRIPTION</h4>
         <p><?= htmlspecialchars($book->getDescription()) ?></p>
         <h4 class="table-header">PROPRIETAIRE</h4>
-        <div>
+        <div class="owner-bubble">
             <img
                 src="<?= htmlspecialchars($bookOwner->getImage()) ?>"
                 alt="<?= htmlspecialchars($bookOwner->getPseudo()) ?>"
