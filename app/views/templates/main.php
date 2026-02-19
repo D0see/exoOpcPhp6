@@ -33,7 +33,7 @@
                             Messagerie
                         </a>';
                         echo '
-                        <a href="index.php?action=viewMyProfile" class= ' . ($viewName === 'profileDetails' ? 'bold' : '') . '>
+                        <a href="index.php?action=viewMyProfile" class= ' . ($viewName === 'myProfileDetails' ? 'bold' : '') . '>
                         <i class="fa-regular fa-user"></i>
                             Mon compte
                         </a>';

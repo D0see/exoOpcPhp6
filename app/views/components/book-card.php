@@ -7,6 +7,6 @@
     <div class="book-description">
         <h3 class="book-card-title"><?= htmlspecialchars($book->getTitle()) ?></h3>
         <h4 class="book-card-author"><?= htmlspecialchars($book->getAuthor()) ?></h4>
-        <h5 class="book-card-owner">Vendu par : <?= htmlspecialchars($book->getOwner()) ?></h5>
+        <h5 class="book-card-owner">proposé par : <?= htmlspecialchars($book->getOwner()) ?></h5>
     </div>
 </a>

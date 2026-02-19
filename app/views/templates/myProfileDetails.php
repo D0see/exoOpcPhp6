@@ -1,7 +1,7 @@
 <div class="block-elem">
     <div class="account-block my-account-block">
         <div class="account-left my-account-left">
-            <img class="account-image" src="<?php $member->getImage() ?>"/>
+            <img class="account-image" src="<?= $member->getImage() ?>"/>
             <div class="account-info">
                 <div class="account-left-member-since">
                     <h2 class="block-element-title"><?= $member->getPseudo() ?></h2>
