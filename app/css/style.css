@@ -915,7 +915,7 @@ thead {
 /** BOOK-DETAILS */
 
 .book-details-card {
-    background-color: var(--nav-color);
+    background-color: var(--background-color);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -939,12 +939,18 @@ thead {
 }
 
 .book-details-right {
-    width: 40%;
+    width: 34%;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 25px;
-    padding: 5% 5%;
+    padding: 4% 8%;
 }
+
+.book-details-right .main-button {
+    height: 50px;
+}
+
 
 .book-details-card .block-element-title {
     text-align: left;
@@ -962,7 +968,6 @@ thead {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    border: 1px solid
 }
 
 .owner-bubble {
@@ -970,16 +975,16 @@ thead {
     flex-direction: row;
     background-color: white;
     justify-content: space-evenly;
-    width: 150px;
-    height: 80px;
+    width: 120px;
+    height: 60px;
     border-radius: 40px;
     align-items: center;
     
 }
 
 .owner-bubble img {
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
     object-fit: cover;
     display: block;
     aspect-ratio: 1 / 1;

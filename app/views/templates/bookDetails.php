@@ -12,13 +12,15 @@
         <h4 class="table-header">DESCRIPTION</h4>
         <p><?= htmlspecialchars($book->getDescription()) ?></p>
         <h4 class="table-header">PROPRIETAIRE</h4>
-        <div class="owner-bubble">
-            <img
-                src="<?= htmlspecialchars($bookOwner->getImage()) ?>"
-                alt="<?= htmlspecialchars($bookOwner->getPseudo()) ?>"
-            >
-            <p><?= htmlspecialchars($bookOwner->getPseudo()) ?></p>
-        </div>
+        <a href=<?= "index.php?action=viewProfile&memberId=" . $book->getOwnerId() ?>>
+            <div class="owner-bubble">
+                <img
+                    src="<?= htmlspecialchars($bookOwner->getImage()) ?>"
+                    alt="<?= htmlspecialchars($bookOwner->getPseudo()) ?>"
+                >
+                <p><?= htmlspecialchars($bookOwner->getPseudo()) ?></p>
+            </div>
+        </a>
         <?php
             if ($_SESSION['idUser'] &&$_SESSION['idUser'] !== $book->getOwnerId()) {
                 $buttonContent = 'Envoyer un message';
@@ -28,17 +30,17 @@
             }
             if (isset($_SESSION['user']) && $book->getBorrowerId()) {
                 if ($book->getBorrowerId() === $_SESSION['user']->getId()) {
-                    echo "<a href='index.php?action=returnBook&idBook=" . $book->getId() . "'>";
-                    echo "return book";
-                    echo "</a>";
-                } else {
-                    echo "unavailable";
-                }
+                    $buttonContent = 'Rendre';
+                    $action = "returnBook&idBook=" . $book->getId();
+                    $type = "full-button";
+                    require __DIR__ . '/../components/main-button.php';
+                } 
             } else if (isset($_SESSION['user'])) {
                 if ($book->getOwnerId() !== $_SESSION['user']->getId()) {
-                    echo "<a href='index.php?action=borrowBook&idBook=" . $book->getId() . "'>";
-                    echo "borrow book";
-                    echo "</a>";
+                    $buttonContent = 'Emprunter';
+                    $action = "borrowBook&idBook=" . $book->getId();
+                    $type = "full-button";
+                    require __DIR__ . '/../components/main-button.php';
                 } 
             }
         ?>

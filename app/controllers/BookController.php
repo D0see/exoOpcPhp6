@@ -49,7 +49,7 @@ class BookController {
 
         $book = $this->bookRepository->getBookById($bookId);
         $bookOwner = $this->memberRepository->getMemberById($book->getOwnerId());
-
+        
         $view = new View("Book");
         $view->render("bookDetails", [
             'book' => $book,

@@ -15,7 +15,7 @@ class MemberController {
 
     public function showProfile() : void
     {
-        $memberId = Utils::request("memberId");
+        $memberId = (int) Utils::request("memberId");
         $member = $this->memberRepository->getMemberById($memberId);
 
         $books = $this->bookRepository->getBooksByOwnerId($memberId);
