@@ -77,13 +77,15 @@
                         <td class="table-data table-description"><div><?= $book->getDescription() ?></div></td>
                         <td class="table-data">
                             <?php
-                                $isAvailable = $book->getBorrowerId() !== null;
+                                $isAvailable = $book->getBorrowerId() === null;
                                 require __DIR__ . '/../components/disponibility-marker.php'; 
                             ?>
                         </td>
                         <td class="table-data">
                             <div class="table-data-actions">
-                                <a class="edit">Éditer</a>
+                                <a class="edit" href="index.php?action=showBookForm&idBook=<?= $book->getId() ?>">
+                                    Éditer
+                                </a>
                                 <a class="delete" href="index.php?action=deleteBook&idBook=<?= $book->getId() ?>">
                                     Supprimer
                                 </a>

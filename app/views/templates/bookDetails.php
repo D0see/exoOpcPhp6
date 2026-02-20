@@ -36,12 +36,10 @@
                     require __DIR__ . '/../components/main-button.php';
                 } 
             } else if (isset($_SESSION['user'])) {
-                if ($book->getOwnerId() !== $_SESSION['user']->getId()) {
-                    $buttonContent = 'Emprunter';
-                    $action = "borrowBook&idBook=" . $book->getId();
-                    $type = "full-button";
-                    require __DIR__ . '/../components/main-button.php';
-                } 
+                $buttonContent = 'Emprunter';
+                $action = "borrowBook&idBook=" . $book->getId();
+                $type = "full-button";
+                require __DIR__ . '/../components/main-button.php';
             }
         ?>
     </div>

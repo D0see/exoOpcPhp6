@@ -990,6 +990,74 @@ thead {
     aspect-ratio: 1 / 1;
 }
 
+/** BOOK FORM */
+
+.book-form-block {
+    text-align: left;
+    width: 100%;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.book-form-header {
+    display: flex;
+    flex-direction: column;
+    margin-left: calc(10% - 40px);
+    gap: 30px;
+    margin-bottom: 15px;
+    margin-top: 30px;
+}
+
+.book-form-header a {
+    font-size: 15px;
+}
+
+.book-form-block .block-element-title {
+    text-align: left;
+}
+
+.book-form-block > a {
+    text-align: left;
+}
+
+.book-form {
+    padding: 40px;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+    background-color: white;
+    border-radius: 25px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+
+.book-form-left {
+    width: 100%;
+}
+
+.book-form-right {
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
+}
+
+.book-form-right .block-element-text-area {
+    min-height: 300px;
+    resize: none;
+}
+
+.book-form-right .block-element-input {
+    background-color: var(--user-message-color);
+    width: 100% !important;
+}
+
+.book-form-right button {
+    width: 300px;
+}
+
 /** UTILS */
 
 .align-left {

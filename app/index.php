@@ -54,11 +54,6 @@ try {
             $bookController = new BookController();
             $bookController->showBook();
             break;
-        case 'viewBookCreationForm':
-            $bookController = new BookController();
-            $bookController->showBookCreationForm();
-            break;
-        
         case 'createBook':
             $bookController = new BookController();
             $bookController->createBook();

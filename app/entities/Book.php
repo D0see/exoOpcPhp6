@@ -49,11 +49,6 @@ class Book extends AbstractEntity
         return $this->borrowerId;
     }
 
-    public function getStateId(): int
-    {
-        return $this->stateId;
-    }
-
     public function getCreatedAt(): string
     {
         return $this->createdAt;
@@ -103,12 +98,6 @@ class Book extends AbstractEntity
     public function setBorrowerId(?int $borrowerId): self
     {
         $this->borrowerId = $borrowerId;
-        return $this;
-    }
-
-    public function setStateId(int $stateId): self
-    {
-        $this->stateId = $stateId;
         return $this;
     }
 

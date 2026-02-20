@@ -27,6 +27,7 @@
                 <div class='nav-block'>
                 <?php 
                     if (isset($_SESSION['user'])) {
+                        echo '<a href="index.php?action=showBookForm" class= ' . ($viewName === 'createBookForm' ? 'bold' : '') . '>Ajouter un livre</a>';
                         echo '
                         <a href="index.php?action=viewMessagerie" class= ' . ($viewName === 'messagerie' ? 'bold' : '') . '>
                         <i class="fa-regular fa-comment"></i>

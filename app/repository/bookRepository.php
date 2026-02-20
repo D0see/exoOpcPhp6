@@ -115,12 +115,11 @@ class BookRepository
     public function updateBook(Book $book): void {
         $sql ="
             UPDATE book 
-            set author = :author 
-            set title = :title 
-            set image = :image 
-            set description = :description 
-            set owner_id = :owner_id 
-            set state_id = :state_id 
+            set author = :author,
+             title = :title,
+             image = :image,
+             description = :description, 
+             owner_id = :owner_id
             where id = :id
         ";
 
@@ -132,16 +131,15 @@ class BookRepository
             'image' => $book->getImage(),
             'description' => $book->getDescription(),
             'owner_id' => $book->getOwnerId(),
-            'state_id' => $book->getStateId(),
         ]);
     }
 
     public function createBook(Book $book): Book {
         $sql ="
             INSERT INTO book (
-                author, title, image, description, owner_id, state_id
+                author, title, image, description, owner_id
             ) VALUES (
-                :author, :title, :image, :description, :owner_id, :state_id
+                :author, :title, :image, :description, :owner_id
             )
         ";
 
@@ -152,7 +150,6 @@ class BookRepository
             'image' => $book->getImage(),
             'description' => $book->getDescription(),
             'owner_id' => $book->getOwnerId(),
-            'state_id' => $book->getStateId(),
         ]);
 
         $bookId = DBManager::getInstance()->getPDO()->lastInsertId();
