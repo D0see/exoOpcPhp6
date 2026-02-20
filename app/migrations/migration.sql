@@ -43,8 +43,8 @@ CREATE TABLE message (
 );
 
 INSERT INTO member (pseudo, password, mail, image) values
-('Patrick', '$2y$10$yRrLQZNUfJfc1v0DFZBd7em9srd42yjOq5XmeH5mfvjLlO1G8YwFm', 'aaa', 'uploads/spongebob.png'),
-('Bob',   '$2y$10$yRrLQZNUfJfc1v0DFZBd7em9srd42yjOq5XmeH5mfvjLlO1G8YwFm', 'bbb', 'uploads/patrick.jpg');
+('Bob', '$2y$10$yRrLQZNUfJfc1v0DFZBd7em9srd42yjOq5XmeH5mfvjLlO1G8YwFm', 'aaa', 'uploads/spongebob.png'),
+('Patric',   '$2y$10$yRrLQZNUfJfc1v0DFZBd7em9srd42yjOq5XmeH5mfvjLlO1G8YwFm', 'bbb', 'uploads/patrick.jpg');
 
 -- mdp is ccc
 

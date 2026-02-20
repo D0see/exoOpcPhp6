@@ -33,7 +33,11 @@
                             <td class="table-data">
                                 <img class="table-image" src="<?= $book->getImage() ?>" alt="">
                             </td>
-                            <td class="table-data"><div><?= $book->getTitle() ?></div></td>
+                            <td class="table-data">
+                                <a href="index.php?action=viewBook&idBook=<?= $book->getId() ?>">
+                                    <div><?= $book->getTitle() ?></div>
+                                </a>
+                            </td>
                             <td class="table-data"><div><?= $book->getAuthor() ?></div></td>
                             <td class="table-data table-description"><div><?= $book->getDescription() ?></div></td>
                         </tr>
