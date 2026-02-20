@@ -18,6 +18,10 @@ class MemberController {
         $memberId = (int) Utils::request("memberId");
         $member = $this->memberRepository->getMemberById($memberId);
 
+        if ($_SESSION['user'] && ($memberId === $_SESSION['user']->getId())) {
+            header("Location: /phpexo6/exoOpcPhp6/app/index.php?action=viewMyProfile");
+        }
+
         $books = $this->bookRepository->getBooksByOwnerId($memberId);
 
         $view = new View("ProfileDetails");

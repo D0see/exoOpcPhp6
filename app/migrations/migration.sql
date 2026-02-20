@@ -50,16 +50,30 @@ INSERT INTO book (author, title, image, description, owner_id) VALUES
 (
   'Frank Herbert',
   'Dune',
-  'https://example.com/dune.jpg',
+  'uploads/dunebookcover.jpg',
   'Epic tale of politics, religion and giant sandworms on the desert planet Arrakis.',
-  1   -- Alice
+  1  
 ),
 (
   'Isaac Asimov',
   'Foundation',
-  'https://example.com/foundation.jpg',
+  'uploads/fondationbookcover.jpg',
   'The first volume of the landmark series about the collapse and rebirth of a galactic empire.',
-  1   -- Alice
+  1   
+),
+(
+  'George Orwell',
+  '1984',
+  'uploads/1984bookcover.jpg',
+  'A chilling dystopia where Big Brother watches your every move and the truth is whatever the Party says it is.',
+  1
+),
+(
+  'J.R.R. Tolkien',
+  'The Lord of the Rings',
+  'uploads/lotrbookcover.jpg',
+  'A hobbit, a ring, and the fate of Middle-earth hang in the balance in this defining work of high fantasy.',
+  2
 );
 
 -- Conversation: Alice (1) ↔ Bob (2) ----------------------------------
