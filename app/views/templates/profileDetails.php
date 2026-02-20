@@ -9,7 +9,7 @@
                 </div>
                 <div class="account-left-book-num">
                     <h4>BIBLIOTHEQUE</h4>
-                    <p>icon <?=  count($books) ?> livres</p>
+                    <p><i class="fa-solid fa-book"></i> <?=  count($books) ?> livres</p>
                 </div>
                 <a class="main-button hollow-button"
                     href="index.php?action=viewMessagerie&idContact=<?= $member->getId() ?>">

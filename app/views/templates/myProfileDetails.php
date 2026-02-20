@@ -5,12 +5,12 @@
                 <div class="account-header">
                 <img class="account-image" src="<?= $member->getImage() ?>"/>
                     <div class="account-image-modify">
-                        <label for="image" class="block-element-label"><?= isset($book) ? 'modifier la photo' : 'importer une photo' ?></label>
+                        <label for="image" class="block-element-label"><?= isset($member) ? 'modifier la photo' : 'importer une photo' ?></label>
                         <input type="file" 
                             name="image" 
                             id="image" 
                             class="" 
-                            value=<?= isset($book) ? $book->getImage(): ''?>
+                            value=<?= isset($member) ? $member->getImage(): ''?>
                             accept="image/*">
                     </div>
                 </div>
