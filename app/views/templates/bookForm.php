@@ -12,7 +12,7 @@
             <input type="hidden" name="bookId" value="<?= htmlspecialchars($book->getId()) ?>">
         <?php endif; ?>
         <div class="book-form-left">
-            <label for="title" class="block-element-label">Photo</label>
+            <label class="block-element-label photo-label">Photo</label>
             <?php
                 if (isset($book)) {
                     echo '<img 
