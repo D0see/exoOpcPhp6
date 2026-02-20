@@ -38,7 +38,7 @@
                     id="title" 
                     class="block-element-input" 
                     placeholder="titre"
-                    value=<?= isset($book) ? $book->getTitle(): ''?>
+                    value="<?= isset($book) ? $book->getTitle(): ''?>"
                     >
             </div>
 
@@ -49,7 +49,7 @@
                     id="author" 
                     class="block-element-input" 
                     placeholder="auteur"
-                    value=<?= isset($book) ? $book->getAuthor(): ''?>
+                    value="<?= isset($book) ? $book->getAuthor(): ''?>"
                     >
             </div>
 
@@ -62,7 +62,6 @@
                         class="block-element-input block-element-text-area" 
                         rows="6"
                         placeholder="description"
-                        value=
                         ><?= isset($book) ? $book->getDescription(): ''?></textarea>
             </div>
 

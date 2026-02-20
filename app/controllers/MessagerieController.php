@@ -45,7 +45,7 @@ class MessagerieController {
             $newContact = $this->memberRepository->getMemberById($contactId);
         }
 
-        if ($newContact->getId() === $_SESSION['idUser']) {
+        if (isset($$newContact) && $newContact->getId() === $_SESSION['idUser']) {
             Utils::redirect("home");
         }
 
