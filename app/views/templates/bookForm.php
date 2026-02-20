@@ -68,7 +68,7 @@
             <div class="input-label-combo">
                 <label for="disponibility" class="block-element-label">Disponibilité</label>
                 <select name="disponibility" class="block-element-input">
-                    <option value="1" <?= (isset($book) && $book->getBorrowerId() !== null) ? 'disabled' : '' ?>>Disponible</option>
+                    <option value="1" <?= (isset($book) && $book->getBorrowerId() !== null && $book->getBorrowerId() !== $_SESSION['idUser']) ? 'disabled' : '' ?>>Disponible</option>
                     <option value="0" <?= (isset($book) && $book->getBorrowerId() !== null) ? 'selected' : '' ?>>Non disponible</option>
                 </select>
             </div>

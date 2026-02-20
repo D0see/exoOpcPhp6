@@ -136,6 +136,8 @@ class BookController {
 
         if ($disponibility === '0') {
             $book->setBorrowerId($_SESSION['idUser']);
+        } else if ($disponibility === '1') {
+            $book->setBorrowerId(null);
         }
 
         $this->libraryService->updateBook($book, $idUser);

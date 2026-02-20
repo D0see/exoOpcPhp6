@@ -119,7 +119,8 @@ class BookRepository
              title = :title,
              image = :image,
              description = :description, 
-             owner_id = :owner_id
+             owner_id = :owner_id,
+             borrower_id = :borrower_id
             where id = :id
         ";
 
@@ -131,6 +132,7 @@ class BookRepository
             'image' => $book->getImage(),
             'description' => $book->getDescription(),
             'owner_id' => $book->getOwnerId(),
+            'borrower_id' => $book->getBorrowerId(),
         ]);
     }
 
