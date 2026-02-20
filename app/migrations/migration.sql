@@ -42,9 +42,9 @@ CREATE TABLE message (
     PRIMARY KEY (`id`)
 );
 
-INSERT INTO member (pseudo, password, mail) values
-('Alice', '$2y$10$yRrLQZNUfJfc1v0DFZBd7em9srd42yjOq5XmeH5mfvjLlO1G8YwFm', 'aaa'),
-('Bob',   '$2y$10$yRrLQZNUfJfc1v0DFZBd7em9srd42yjOq5XmeH5mfvjLlO1G8YwFm', 'bbb');
+INSERT INTO member (pseudo, password, mail, image) values
+('Alice', '$2y$10$yRrLQZNUfJfc1v0DFZBd7em9srd42yjOq5XmeH5mfvjLlO1G8YwFm', 'aaa', 'uploads/spongebob.png'),
+('Bob',   '$2y$10$yRrLQZNUfJfc1v0DFZBd7em9srd42yjOq5XmeH5mfvjLlO1G8YwFm', 'bbb', 'uploads/patrick.jpg');
 
 INSERT INTO book (author, title, image, description, owner_id) VALUES
 (

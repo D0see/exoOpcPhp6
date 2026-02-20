@@ -16,6 +16,10 @@ class MessagerieController {
 
     public function showMessagerie() : void
     {
+        if (!isset($_SESSION['user'])) {
+            Utils::redirect("home");
+        }
+
         $userId = $_SESSION['idUser'];
         $contactId = (int) Utils::request("idContact");;
 
@@ -41,6 +45,10 @@ class MessagerieController {
             $newContact = $this->memberRepository->getMemberById($contactId);
         }
 
+        if ($newContact->getId() === $_SESSION['idUser']) {
+            Utils::redirect("home");
+        }
+
         // On affiche la page d'administration.
         $view = new View("messagerie");
         $view->render("messagerie", [
@@ -54,9 +62,17 @@ class MessagerieController {
 
     public function sendMessage() {
 
+        if (!isset($_SESSION['user'])) {
+            Utils::redirect("home");
+        }
+
         $userId = $_SESSION['idUser'];
         $contactId = (int) Utils::request("idContact");
         $content = Utils::request("message");
+
+        if ($userId === $contactId) {
+            Utils::redirect("home");
+        }
 
         $message = new Message();
         

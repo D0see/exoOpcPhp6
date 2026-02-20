@@ -59,6 +59,10 @@ class BookController {
 
     public function createBook() : void
     {
+        if (!isset($_SESSION['user'])) {
+            Utils::redirect("home");
+        }
+
         $title = Utils::request("title", null);
         $author = Utils::request("author", null);
         $description = Utils::request("description", null);
@@ -100,6 +104,11 @@ class BookController {
     
     public function editBook(): void
     {
+
+        if (!isset($_SESSION['user'])) {
+            Utils::redirect("home");
+        }
+
         $bookId = Utils::request("bookId", -1);
         $idUser = $_SESSION['idUser'];
 
@@ -140,6 +149,10 @@ class BookController {
 
     public function borrowBook() : void
     {
+        if (!isset($_SESSION['user'])) {
+            Utils::redirect("home");
+        }
+
         $bookId = Utils::request("idBook", -1);
         $userId = $_SESSION['idUser'];
 
@@ -156,12 +169,22 @@ class BookController {
 
     public function returnBook() : void
     {
+        if (!isset($_SESSION['user'])) {
+            Utils::redirect("home");
+        }
+
         $bookId = Utils::request("idBook", -1);
         $userId = $_SESSION['idUser'];
 
-        $this->libraryService->returnBook($bookId);
         $book = $this->libraryService->getBook($bookId);
         $bookOwner = $this->memberRepository->getMemberById($book->getOwnerId());
+
+        if ($userId !== $book->getBorrowerId()) {
+            Utils::redirect("home");
+        }
+        
+        $this->libraryService->returnBook($bookId);
+
 
         $view = new View("Book");
         $view->render("bookDetails", [
@@ -183,6 +206,9 @@ class BookController {
 
     public function showBookForm(): void
     {
+        if (!isset($_SESSION['user'])) {
+            Utils::redirect("home");
+        }
 
         $bookId = Utils::request("idBook", null);
         $idUser = $_SESSION['idUser'];

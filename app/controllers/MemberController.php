@@ -33,6 +33,10 @@ class MemberController {
 
     public function showMyProfile() : void
     {
+        if (!isset($_SESSION['user'])) {
+            Utils::redirect("home");
+        }
+        
         $memberId = $_SESSION['idUser'];
         $member = $this->memberRepository->getMemberById($memberId);
 
@@ -85,6 +89,11 @@ class MemberController {
     }
 
     public function showRegister() {
+
+        if ($_SESSION['user']) {
+            Utils::redirect("home");
+        }
+
         $view = new View("registration");
         $view->render("registration");
     }
@@ -95,8 +104,7 @@ class MemberController {
         $password = Utils::request("password", null);
 
         if (!isset($pseudo) || !isset($mail) || !isset($password)) {
-            $view = new View("registration");
-            $view->render("registration", ['errorMessage' => 'champs manquants']);
+            Utils::redirect("showRegister");
         }
 
         //hashpassword
@@ -125,6 +133,10 @@ class MemberController {
 
     public function updateMyProfile() {
 
+        if (!isset($_SESSION['user'])) {
+            Utils::redirect("home");
+        }
+        
         $user = $_SESSION['user'];
 
         $pseudo = Utils::request("pseudo", $user->getPseudo());
@@ -142,6 +154,15 @@ class MemberController {
         if ($password !== '') {
             $password = password_hash($password, PASSWORD_DEFAULT);
             $user->setPassword($password);
+        }
+
+        $imagePath = null;
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            $imagePath = $this->imageUploader->uploadImage($_FILES['image'], 'images');
+        }
+
+        if (isset($imagePath)) {
+            $user->setImage($imagePath);
         }
 
         $this->memberRepository->updateMember($user);
