@@ -55,11 +55,13 @@
         <?php if (isset($contact)): ?>
             <div class="messagerie-right">
                 <div class="correspondant-banner">
-                    <img
-                        class="messagerie-banner-contact-image"
-                        src="<?= htmlspecialchars($contact->getImage()) ?>"
-                        alt="<?= htmlspecialchars($contact->getPseudo()) ?>"
-                    > 
+                    <a href="index.php?action=viewProfile&memberId=<?= $contact->getId() ?>">
+                        <img
+                            class="messagerie-banner-contact-image"
+                            src="<?= htmlspecialchars($contact->getImage()) ?>"
+                            alt="<?= htmlspecialchars($contact->getPseudo()) ?>"
+                        > 
+                    </a>
                     <div class="messagerie-banner-contact-pseudo">
                         <?= htmlspecialchars($contact->getPseudo()) ?>
                     </div>
