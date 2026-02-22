@@ -187,6 +187,8 @@ class BookController {
         
         $this->libraryService->returnBook($bookId);
 
+        $book->setBorrowerId(null);
+        $book->setBorrowedAt(null);
 
         $view = new View("Book");
         $view->render("bookDetails", [
